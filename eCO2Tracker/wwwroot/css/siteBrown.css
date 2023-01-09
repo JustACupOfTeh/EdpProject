@@ -1,0 +1,44 @@
+﻿/*
+    https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colors
+    https://material.io/design/color/the-color-system.html#tools-for-picking-colors
+*/
+
+body {
+    background-color: #4c320d;
+    color: white;
+}
+
+th, td {
+    color: white;
+}
+
+.text-muted {
+    color: white !important;
+}
+
+.navbar {
+    background-color: burlywood !important;
+}
+
+.border-top {
+    border-color: burlywood !important;
+}
+
+a {
+    color: burlywood;
+}
+
+    a:hover {
+        color: sandybrown;
+    }
+
+.btn-primary {
+    color: white;
+    background-color: #9f5317;
+    border-color: #9f5317;
+}
+
+    .btn-primary:hover {
+        background-color: saddlebrown;
+        border-color: saddlebrown;
+    }
