@@ -5,23 +5,23 @@ namespace eCO2Tracker.Models
 {
     public class Lifestyle
     {
-        public string entryID { get; set; } = generateUuid();
+        public string EntryID { get; set; } = generateUuid();
         [Required, MaxLength(100)]
         [Display(Name = "Title")]
-        public string entryTitle { get; set; } = string.Empty;
+        public string EntryTitle { get; set; } = string.Empty;
         [Required]
         [Display(Name = "Description")]
-        public string entryDesc { get; set; } = string.Empty;
+        public string EntryDesc { get; set; } = string.Empty;
         [Required]
         [Display(Name = "Impact")]
-        public string entryImpact { get; set; } = string.Empty;
+        public string EntryImpact { get; set; } = string.Empty;
         [Required, MaxLength(150)]
         [Display(Name = "Reference")]
-        public string entryReferences { get; set; } = string.Empty;
+        public string EntryReferences { get; set; } = string.Empty;
         [Required, MaxLength(50)]
-        public string entryImageURL { get; set; } = string.Empty;
-        public DateTime entryDate { get; set; } = DateTime.Now;
-        public bool entryStatus { get; set; } = false;
+        public string EntryImageURL { get; set; } = string.Empty;
+        public DateTime EntryDate { get; set; } = DateTime.Now;
+        public bool EntryStatus { get; set; } = false;
 
         public static string generateUuid()
         {
