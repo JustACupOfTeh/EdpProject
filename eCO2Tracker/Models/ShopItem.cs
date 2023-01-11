@@ -4,15 +4,16 @@ namespace eCO2Tracker.Models
 {
     public class ShopItem
     {
-        [Column(TypeName = "int")]
-        public int itemId { get; set; }
-        public string itemName { get; set; }
-        public float price { get; set; }
-        [DataType(DataType.DateTime)]
-        [Column(TypeName = "date")]
-        [Display(Name ="Expiry date")]
-        public DateTime DateExpire { get; set; }
-        public int itemCount { get; set; }
+        public string ItemID { get; set; } = string.Empty;
+        public string ItemName { get; set; } = string.Empty;
+        public int ItemCount { get; set; }
+        public float ItemPrice { get; set; }
+        public string Image { get; set; } = string.Empty;
+
+        [DataType(DataType.Date)]
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        [DataType(DataType.Date)]
+        public DateTime ExpiredDate { get; set; } 
 
     }
 }

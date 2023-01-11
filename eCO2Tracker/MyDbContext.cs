@@ -21,5 +21,10 @@ namespace eCO2Tracker
         public DbSet<Department> Departments { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
+
+        public DbSet<ShopItem> ShopItems { get; set; }
+
+        public DbSet<Voucher> Voucher { get; set; }
+
     }
 }
