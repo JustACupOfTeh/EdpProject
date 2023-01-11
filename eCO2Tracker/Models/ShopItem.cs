@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace eCO2Tracker.Models
 {
@@ -12,9 +13,14 @@ namespace eCO2Tracker.Models
 
         [Key]
         public string ItemID { get; set; } = string.Empty;
+        [Display(Name = "Item")]
         public string ItemName { get; set; } = string.Empty;
+        [Display(Name = "Description")]
+        public string ItemDescription { get; set; } = string.Empty;
+        [Display(Name = "Quantity")]
         public int ItemCount { get; set; }
-        public float ItemPrice { get; set; }
+        [Display(Name = "Cost")]
+        public int ItemPrice { get; set; }
         public string ImageURL { get; set; } = string.Empty;
         public ItemType ItemType { get; set; } 
 

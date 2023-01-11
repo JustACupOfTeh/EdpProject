@@ -12,5 +12,6 @@ namespace eCO2Tracker.Services
         {
             return _context.ShopItems.OrderBy(m => m.ItemName).ToList();
         }
+
     }
 }
