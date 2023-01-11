@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using eCO2Tracker.Models;
+using System.Reflection;
 
 namespace eCO2Tracker
 {
@@ -18,13 +19,23 @@ namespace eCO2Tracker
             optionsBuilder.UseSqlServer(connectionString);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<ShopItem>()
+                .Property(p => p.ItemType)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (ItemType)Enum.Parse(typeof(ItemType), v));
+        }
+
         public DbSet<Department> Departments { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
 
         public DbSet<ShopItem> ShopItems { get; set; }
 
-        public DbSet<Voucher> Voucher { get; set; }
+        public DbSet<Voucher> Vouchers { get; set; }
 
     }
 }
