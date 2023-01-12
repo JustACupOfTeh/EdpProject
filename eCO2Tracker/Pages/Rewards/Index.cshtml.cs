@@ -16,7 +16,7 @@ namespace eCO2Tracker.Pages.Rewards
 
         public void OnGet()
         {
-            ShopItemList = _shopItemService.GetAll();
+            
         }
     }
 }
