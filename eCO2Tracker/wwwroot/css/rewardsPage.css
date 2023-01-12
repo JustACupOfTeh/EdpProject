@@ -94,6 +94,15 @@
     padding: 8px 10px 8px 10px;
 }
 
+.delete-button {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #ff0000;
+    border-radius: 10px;
+    border: 0px;
+    padding: 8px 10px 8px 10px;
+}
+
 .add-button:hover {
     color: #ffffff;
 }

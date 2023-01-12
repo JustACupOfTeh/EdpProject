@@ -31,7 +31,7 @@ namespace eCO2Tracker.Models
         public DateTime ExpiredDate { get; set; }
 
         //Relationships
-        public List<User_ShopItems> User_ShopItems { get; set; }
+        public virtual List<User_ShopItems>? User_ShopItems { get; set; }
 
     }
 }

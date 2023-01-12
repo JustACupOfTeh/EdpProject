@@ -23,7 +23,7 @@ namespace eCO2Tracker.Pages.Admin.Rewards
         }
         public async Task<IActionResult> OnPostAsync()
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 ShopItem.ItemID = Guid.NewGuid().ToString();
                 ShopItem? employee = _shopItemService.GetShopItemById(ShopItem.ItemID);
@@ -34,7 +34,7 @@ namespace eCO2Tracker.Pages.Admin.Rewards
                 }
                 _shopItemService.AddShopItem(ShopItem);
                 TempData["FlashMessage.Type"] = "success";
-                TempData["FlashMessage.Text"] = string.Format("Employee {0} is added", ShopItem.ItemID);
+                TempData["FlashMessage.Text"] = string.Format("ShopItem {0} is added", ShopItem.ItemName);
                 return Redirect("/Admin/Rewards");
             }
             return Page();

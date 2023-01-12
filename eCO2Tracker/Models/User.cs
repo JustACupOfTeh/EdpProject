@@ -11,6 +11,6 @@ namespace eCO2Tracker.Models
         public int PointsTotal { get; set; }
 
         //Relationships
-        public List<User_ShopItems> User_ShopItems { get; set; }
+        public List<User_ShopItems>? User_ShopItems { get; set; }
     }
 }

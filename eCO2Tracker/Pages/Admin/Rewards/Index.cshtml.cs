@@ -17,6 +17,8 @@ namespace eCO2Tracker.Pages.Admin.Rewards
             _environment = environment;
         }
         public List<ShopItem> ShopItemList { get; set; } = new();
+        [BindProperty]
+        public ShopItem ShopItemDelete { get; set; } = new();
         public IActionResult OnGet()
         {
             List<ShopItem>? shopitemlist = _shopItemService.GetAll();
@@ -29,6 +31,15 @@ namespace eCO2Tracker.Pages.Admin.Rewards
             {
                 return Redirect("/Index");
             }
+        }
+        public IActionResult OnPost()
+        {
+            if (ModelState.IsValid)
+            {
+                _shopItemService.DeleteShopItem(ShopItemDelete);
+                return Redirect("/Admin/Rewards");
+            }
+            return Page();
         }
     }
 }

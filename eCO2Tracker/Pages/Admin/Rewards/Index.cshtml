@@ -28,6 +28,13 @@
                         <td>
                             <a asp-page="#" asp-route-id="@item.ItemID">View</a>
                         </td>
+                        <td>
+                            <form method="post" enctype="multipart/form-data">
+                               <input type="hidden" asp-for="ShopItemDelete.ItemID"
+                               value = "@item.ItemID" />
+                                <input class="delete-button" type="submit" value="Delete">
+                            </form>
+                        </td>
                     </tr>
                 }
             }
