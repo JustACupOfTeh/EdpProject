@@ -22,6 +22,7 @@ namespace eCO2Tracker.Models
         [Display(Name = "Cost")]
         public int ItemPrice { get; set; }
         public string ImageURL { get; set; } = string.Empty;
+        [Display(Name = "Type")]
         public ItemType ItemType { get; set; } 
 
         [DataType(DataType.DateTime)]

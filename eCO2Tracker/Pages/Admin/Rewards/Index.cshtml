@@ -1,0 +1,40 @@
+﻿@page
+@model eCO2Tracker.Pages.Admin.Rewards.IndexModel
+@{
+    ViewData["title"] = "Shop Items Admin View";
+}
+<div class="table-padding">
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ShopItemList[0].ItemName)</th>
+                <th>@Html.DisplayNameFor(model => model.ShopItemList[0].ItemDescription)</th>
+                <th>@Html.DisplayNameFor(model => model.ShopItemList[0].ItemPrice)</th>
+                <th>@Html.DisplayNameFor(model => model.ShopItemList[0].ItemType)</th>
+                <th>@Html.DisplayNameFor(model => model.ShopItemList[0].ItemCount)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                @foreach (var item in Model.ShopItemList)
+                {
+                    <tr>
+                        <td>@item.ItemName</td>
+                        <td>@item.ItemDescription</td>
+                        <td>@item.ItemPrice</td>
+                        <td>@item.ItemType</td>
+                        <td>@item.ItemCount</td>
+                        <td>
+                            <a asp-page="#" asp-route-id="@item.ItemID">View</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a class="add-button" href="/Admin/Rewards/Add">Add</a>
+</div>
+

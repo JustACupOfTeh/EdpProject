@@ -83,3 +83,21 @@
 .shop-button:hover {
     color: #ffffff;
 }
+
+/*Admin related*/
+.add-button {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #0ba6a8;
+    border-radius: 10px;
+    border: 0px;
+    padding: 8px 10px 8px 10px;
+}
+
+.add-button:hover {
+    color: #ffffff;
+}
+
+.table-padding {
+    padding-bottom: 40px;
+}

@@ -1,9 +1,9 @@
-using eCO2Tracker.Models;
 using eCO2Tracker.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using eCO2Tracker.Models;
 
-namespace eCO2Tracker.Pages.Rewards.Store
+namespace eCO2Tracker.Pages.Admin.Rewards
 {
     public class IndexModel : PageModel
     {
@@ -16,13 +16,13 @@ namespace eCO2Tracker.Pages.Rewards.Store
             _userService = userService;
             _environment = environment;
         }
-        public User User { get; set; } = new();
+        public List<ShopItem> ShopItemList { get; set; } = new();
         public IActionResult OnGet()
         {
-            User? user = _userService.GetUserFirst();
-            if (user != null)
+            List<ShopItem>? shopitemlist = _shopItemService.GetAll();
+            if (shopitemlist != null)
             {
-                User = user;
+                ShopItemList = shopitemlist;
                 return Page();
             }
             else
