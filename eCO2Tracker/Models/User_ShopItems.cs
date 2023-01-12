@@ -1,6 +1,6 @@
 ﻿namespace eCO2Tracker.Models
 {
-    public class UserShopItems
+    public class User_ShopItems
     {
         public string UserID { get; set; }
         public User User { get; set; }

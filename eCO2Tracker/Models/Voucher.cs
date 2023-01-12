@@ -6,8 +6,8 @@ namespace eCO2Tracker.Models
     {
         [Key]
         public string VoucherID { get; set; } = string.Empty;
-        public string VoucherName { get; set; }
-        public string VoucherUrl { get; set; }
+        public string VoucherName { get; set; } = string.Empty;
+        public string VoucherUrl { get; set; } = string.Empty;
         public int VoucherPrice { get; set; }
         public float VoucherDiscount { get; set; }
         public string VoucherType { get; set; } = string.Empty;

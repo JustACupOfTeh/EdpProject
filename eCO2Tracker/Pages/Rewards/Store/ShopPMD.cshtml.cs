@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace eCO2Tracker.Pages.Rewards
+namespace eCO2Tracker.Pages.Rewards.Store
 {
-    public class StoreModel : PageModel
+    public class ShopPMDModel : PageModel
     {
         public void OnGet()
         {

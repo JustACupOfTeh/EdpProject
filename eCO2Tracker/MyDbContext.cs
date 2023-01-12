@@ -21,21 +21,48 @@ namespace eCO2Tracker
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            //Define User_ShopItems table
+            modelBuilder
+                .Entity<User_ShopItems>()
+                .HasKey(
+                    us => new
+                    {
+                        us.UserID,
+                        us.ItemID
+                    });
+
+            //Declare user to be part of User_ShopItem
+            modelBuilder
+                .Entity<User_ShopItems>()
+                .HasOne(u => u.User)
+                .WithMany(us => us.User_ShopItems)
+                .HasForeignKey(u => u.UserID);
+
+            //Declare shopitem to be part of User_ShopItem
+            modelBuilder
+                .Entity<User_ShopItems>()
+                .HasOne(s => s.ShopItem)
+                .WithMany(us => us.User_ShopItems)
+                .HasForeignKey(s => s.ItemID);
+
             modelBuilder
                 .Entity<ShopItem>()
                 .Property(p => p.ItemType)
                 .HasConversion(
                     v => v.ToString(),
                     v => (ItemType)Enum.Parse(typeof(ItemType), v));
+
+            base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Department> Departments { get; set; }
-
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public DbSet<ShopItem> ShopItems { get; set; }
 
         public DbSet<Voucher> Vouchers { get; set; }
+
+        public DbSet<User_ShopItems> UserItems { get; set; }
 
     }
 }

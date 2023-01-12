@@ -4,6 +4,12 @@
    text-align: center;
 }
 
+.div-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .product-card {
     border: 2px, solid, #000000;
     width: 70%;
@@ -55,4 +61,25 @@
 
 .rewards-navlink:hover {
     color: #0ba6a8;
+}
+
+/*Shop related*/
+
+.shop-button {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #0ba6a8;
+    border-radius: 20px;
+    border: 0px;
+    width: 200px;
+    height: 100px;
+    margin: 10px;   
+    font-size: 25px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shop-button:hover {
+    color: #ffffff;
 }

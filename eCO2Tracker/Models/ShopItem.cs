@@ -27,7 +27,10 @@ namespace eCO2Tracker.Models
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         [DataType(DataType.DateTime)]
-        public DateTime ExpiredDate { get; set; } 
+        public DateTime ExpiredDate { get; set; }
+
+        //Relationships
+        public List<User_ShopItems> User_ShopItems { get; set; }
 
     }
 }

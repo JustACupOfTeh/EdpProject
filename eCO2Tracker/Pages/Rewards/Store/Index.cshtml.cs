@@ -1,9 +1,9 @@
+using eCO2Tracker.Models;
+using eCO2Tracker.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using eCO2Tracker.Services;
-using eCO2Tracker.Models;
 
-namespace eCO2Tracker.Pages.Rewards
+namespace eCO2Tracker.Pages.Rewards.Store
 {
     public class IndexModel : PageModel
     {
@@ -14,7 +14,7 @@ namespace eCO2Tracker.Pages.Rewards
         {
             _shopItemService = shopItemService;
             _userService = userService;
-            _environment= environment;
+            _environment = environment;
         }
 
         [BindProperty]
