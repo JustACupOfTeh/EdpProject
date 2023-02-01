@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eCO2Tracker.Models
 {
-    public class Lifestyle
+    public class Lifestyles
     {
         public string EntryID { get; set; } = generateUuid();
         [Required, MaxLength(100)]
