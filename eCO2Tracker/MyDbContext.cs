@@ -46,13 +46,6 @@ namespace eCO2Tracker
                 .WithMany(us => us.User_ShopItems)
                 .HasForeignKey(s => s.ItemID);
 
-            modelBuilder
-                .Entity<ShopItem>()
-                .Property(p => p.ItemType)
-                .HasConversion(
-                    v => v.ToString(),
-                    v => (ItemType)Enum.Parse(typeof(ItemType), v));
-
             base.OnModelCreating(modelBuilder);
         }
 

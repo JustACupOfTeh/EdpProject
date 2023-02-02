@@ -5,9 +5,10 @@ namespace eCO2Tracker.Models
     public class User
     {
         [Key]
-        public string UserID { get; set; } = string.Empty;
+        public string UserID { get; set; }
         public string UserName { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
+        public int PointsCurrent { get; set; }
         public int PointsTotal { get; set; }
 
         //Relationships

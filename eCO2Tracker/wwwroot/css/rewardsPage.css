@@ -10,11 +10,6 @@
     align-items: center;
 }
 
-.product-card {
-    border: 2px, solid, #000000;
-    width: 70%;
-}
-
 .points-border {
     width: 90%;
     height: 25vh;
@@ -84,6 +79,71 @@
     color: #ffffff;
 }
 
+.shop-logo {
+    width: 80px;
+    height: 80px;
+    display: inline-block
+}
+
+.wallet-logo {
+    width: 30px;
+    height: 30px;
+}
+
+.shop-back-button {
+    text-decoration: none;
+    background-color: #0ba6a8;
+    color: #fff;
+    padding: 5px 8px;
+    border: solid 3px #000;
+}
+
+.product-card {
+    border: 2px, solid, #000000;
+    background-color: #0ba6a8;
+    position: relative;
+    margin: 1.5em;
+    border-radius: 10px;
+    height: 170px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-card-img {
+    height: 170px;
+    width: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: solid 2px #000000;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.product-card-button {
+    font-size: 1.5em;
+    font-weight: bold;
+    background-color: #fff;
+    width: 100px;
+    margin: 1em;
+    border: 0px;
+    border-radius: 5px;
+}
+
+.product-card-text-div {
+    position: absolute;
+    top: 8%;
+    left: 35%;
+}
+
+.product-card-text-div p{
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
 /*Admin related*/
 .add-button {
     text-decoration: none;
@@ -107,6 +167,47 @@
     color: #ffffff;
 }
 
+.view-button {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #0ba6a8;
+    border-radius: 10px;
+    padding: 8px 10px 8px 10px;
+    border: 0px;
+}
+
+.view-button-1 {
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: #0ba6a8;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.view-button-1:hover {
+    color: #fff;
+}
+
 .table-padding {
     padding-bottom: 40px;
+}
+
+.img-preview {
+    height: 220px;
+    width: 345px;
+    padding: 1em;
+    margin-top: 1em;
+    object-fit: cover;
+    border: solid 3px #0ba6a8;
+}
+
+.page-nav-link {
+    text-decoration: none;
+    color: #0ba6a8;
+}
+
+.page-nav-link:hover {
+    color: #0ba6a8;
+    font-weight: bold;
 }

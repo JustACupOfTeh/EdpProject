@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using eCO2Tracker.Models;
 using eCO2Tracker.Services;
+using System.Net;
+using System.Globalization;
 
 namespace eCO2Tracker.Pages.Admin.Rewards
 {
@@ -18,6 +20,10 @@ namespace eCO2Tracker.Pages.Admin.Rewards
         }
         [BindProperty]
         public ShopItem ShopItem { get; set; } = new();
+        [BindProperty]
+        public IFormFile? ItemImage { get; set; }
+        [BindProperty]
+        public string ExpireDateTime { get; set; }
         public void OnGet()
         {
         }
@@ -32,6 +38,32 @@ namespace eCO2Tracker.Pages.Admin.Rewards
                     ModelState.AddModelError("ShopItem.ItemID", "Shop Item ID alreay exists.");
                     return Page();
                 }
+                if (ItemImage != null)
+                {
+                    if (ItemImage.Length > 5 * 1024 * 1024)
+                    {
+                        ModelState.AddModelError("ItemImage", "Image size can only be up to 5mb.");
+                        return Page();
+                    }
+                    if (!ItemImage.ContentType.StartsWith("image/"))
+                    {
+                        ModelState.AddModelError("ItemImage", "File uploaded was not a image");
+                        return Page();
+                    }
+
+                    //Upload Image
+
+                    var uploadsFolder = "uploads";
+                    var imageFile = Guid.NewGuid() + Path.GetExtension(ItemImage.FileName);
+                    var imagePath = Path.Combine(_environment.ContentRootPath, "wwwroot", uploadsFolder, imageFile);
+                    Directory.CreateDirectory(Path.GetDirectoryName(imagePath));
+                    using var fileStream = new FileStream(imagePath, FileMode.Create);
+                    await ItemImage.CopyToAsync(fileStream);
+                    ShopItem.ImageURL = string.Format("/{0}/{1}", uploadsFolder, imageFile);
+                }
+                //Expire At value
+                var format = "yyyy-MM-ddTHH:mm";
+                ShopItem.ExpiresAt = DateTime.ParseExact(ExpireDateTime, format, CultureInfo.InvariantCulture);
                 _shopItemService.AddShopItem(ShopItem);
                 TempData["FlashMessage.Type"] = "success";
                 TempData["FlashMessage.Text"] = string.Format("ShopItem {0} is added", ShopItem.ItemName);

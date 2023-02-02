@@ -4,3 +4,38 @@
     ViewData[""] = "PMD Model";
 }
 
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <img class="shop-logo" src="~/uploads/PMD.png" />
+    </div>
+    <div class="col-1">
+        <a asp-page="/Rewards/Shop" class="shop-back-button">BACK</a>
+        <div class="d-flex mt-4">
+            <img class="wallet-logo" src="~/uploads/wallet-filled-money-tool.png" />
+            <p class="p-2">@Model.User.PointsTotal</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            @{
+                @foreach(var item in Model.ShopPMDList)
+                {
+                <div class="product-card">
+                      <img class="product-card-img" src="@(string.IsNullOrEmpty(item.ImageURL) ? "/uploads/shopping-bag.png" : item.ImageURL)" onerror="this.src='uploads/shopping-bag.png'"/>
+                      <p></p>
+                      <div class="product-card-text-div">
+                            <p>@item.ItemName</p>
+                            <p>Cost: @item.ItemPrice pts</p>
+                            <p>In Store: @item.ItemCount</p>
+                      </div>
+                      <form enctype="multipart/form-data" method="post">
+                          <input type="hidden" value="@item.ItemID" asp-for="ItemID" />
+                          <button class="product-card-button" type="submit">BUY</button>
+                      </form>
+                </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>

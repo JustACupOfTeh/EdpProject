@@ -1,3 +1,4 @@
+using eCO2Tracker.Models;
 using eCO2Tracker.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,9 +16,33 @@ namespace eCO2Tracker.Pages.Rewards.Store
             _userService = userService;
             _environment = environment;
         }
+        public List<ShopItem> ShopPMDList { get; set; } = new();
+        public ShopItem ItemBought { get; set; } = new();
+        [BindProperty]
+        public string ItemID { get; set; }
+        public User User { get; set; } = new();
         public void OnGet()
         {
+            User = _userService.GetUserFirst();
+            ShopPMDList = _shopItemService.GetShopItemByType("PMD");
+        }
 
+        public async Task<IActionResult> OnPostAsync() 
+        {
+            User = _userService.GetUserFirst();
+            ItemBought = _shopItemService.GetShopItemById(ItemID);
+            if (ItemBought.ItemCount > 0) 
+            {
+                _shopItemService.BuyShopItem(ItemBought, User);
+                TempData["FlashMessage.Type"] = "success";
+                TempData["FlashMessage.Text"] = string.Format("{0} successfully bought.", ItemBought.ItemName);
+                return Page();
+            }
+            TempData["FlashMessage.Type"] = "danger";
+            TempData["FlashMessage.Text"] = "Item not available.";
+            return Redirect("/Admin/Rewards/Index");
+            return Page();
+            
         }
     }
 }
