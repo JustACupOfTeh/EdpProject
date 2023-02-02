@@ -31,7 +31,7 @@ namespace eCO2Tracker.Pages.Rewards.Store
         {
             User = _userService.GetUserFirst();
             ItemBought = _shopItemService.GetShopItemById(ItemID);
-            if (ItemBought.ItemCount > 0) 
+            if (ItemBought.ItemCount > 0 && User.PointsCurrent > 0) 
             {
                 _shopItemService.BuyShopItem(ItemBought, User);
                 TempData["FlashMessage.Type"] = "success";
@@ -40,8 +40,7 @@ namespace eCO2Tracker.Pages.Rewards.Store
             }
             TempData["FlashMessage.Type"] = "danger";
             TempData["FlashMessage.Text"] = "Item not available.";
-            return Redirect("/Admin/Rewards/Index");
-            return Page();
+            return Redirect("/Rewards/Store/ShopPMD");
             
         }
     }
