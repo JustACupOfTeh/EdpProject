@@ -46,7 +46,7 @@ namespace eCO2Tracker.Pages.Admin.Rewards
             if (ModelState.IsValid)
             {
                 var uploadsFolder = "uploads";
-                if (ShopItem.ImageURL != null)
+                if (ShopItem.ImageURL != null && ItemImage != null)
                 {
                     var oldImageFile = Path.GetFileName(ShopItem.ImageURL);
                     var oldImagePath = Path.Combine(_environment.ContentRootPath, "wwwroot", uploadsFolder, oldImageFile);

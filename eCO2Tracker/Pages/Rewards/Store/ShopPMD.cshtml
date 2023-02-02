@@ -1,7 +1,7 @@
 ﻿@page
 @model eCO2Tracker.Pages.Rewards.Store.ShopPMDModel
 @{
-    ViewData[""] = "PMD Model";
+    ViewData["title"] = "PMD Model";
 }
 
 <div class="container">
@@ -9,7 +9,7 @@
         <img class="shop-logo" src="~/uploads/PMD.png" />
     </div>
     <div class="col-1">
-        <a asp-page="/Rewards/Shop" class="shop-back-button">BACK</a>
+        <a asp-page="/Rewards/Store/Index" class="shop-back-button">BACK</a>
         <div class="d-flex mt-4">
             <img class="wallet-logo" src="~/uploads/wallet-filled-money-tool.png" />
             <p class="p-2">@Model.User.PointsCurrent</p>

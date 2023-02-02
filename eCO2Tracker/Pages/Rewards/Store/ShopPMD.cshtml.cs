@@ -31,12 +31,12 @@ namespace eCO2Tracker.Pages.Rewards.Store
         {
             User = _userService.GetUserFirst();
             ItemBought = _shopItemService.GetShopItemById(ItemID);
-            if (ItemBought.ItemCount > 0 && User.PointsCurrent > 0) 
+            if (ItemBought.ItemCount > 0 && User.PointsCurrent >= ItemBought.ItemPrice) 
             {
                 _shopItemService.BuyShopItem(ItemBought, User);
                 TempData["FlashMessage.Type"] = "success";
                 TempData["FlashMessage.Text"] = string.Format("{0} successfully bought.", ItemBought.ItemName);
-                return Page();
+                return Redirect("/Rewards/Store/ShopPMD");
             }
             TempData["FlashMessage.Type"] = "danger";
             TempData["FlashMessage.Text"] = "Item not available.";

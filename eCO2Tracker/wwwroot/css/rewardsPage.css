@@ -98,6 +98,10 @@
     border: solid 3px #000;
 }
 
+.shop-back-button:hover {
+    color: #fff
+}
+
 .product-card {
     border: 2px, solid, #000000;
     background-color: #0ba6a8;
