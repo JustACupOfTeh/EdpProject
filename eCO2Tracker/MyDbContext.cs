@@ -18,10 +18,6 @@ namespace eCO2Tracker
             optionsBuilder.UseSqlServer(connectionString);
         }
 
-        public DbSet<Department> Departments { get; set; }
-
-        public DbSet<Employee> Employees { get; set; }
-
         public DbSet<Lifestyles> Lifestyle { get; set; }
     }
 }
