@@ -1,0 +1,70 @@
+﻿@page "{index?}"
+@model eCO2Tracker.Pages.Admin.Rewards.IndexModel
+@{
+    ViewData["title"] = "Shop Items Admin View";
+}
+<div class="table-padding">
+    <h1 class="display-3 pb-3">Shop Item List</h1>
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ShopItemList[0].ItemName)</th>
+                <th>@Html.DisplayNameFor(model => model.ShopItemList[0].ItemDescription)</th>
+                <th>@Html.DisplayNameFor(model => model.ShopItemList[0].ItemPrice)</th>
+                <th>@Html.DisplayNameFor(model => model.ShopItemList[0].ItemType)</th>
+                <th>@Html.DisplayNameFor(model => model.ShopItemList[0].ItemCount)</th>
+                <th>@Html.DisplayNameFor(model => model.ShopItemList[0].CreatedDate)</th>
+                <th>@Html.DisplayNameFor(model => model.ShopItemList[0].ExpiresAt)</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                @foreach (var item in Model.ShopItemList)
+                {
+                    <tr>
+                        <td>@item.ItemName</td>
+                        <td>@item.ItemDescriptionSummary</td>
+                        <td>@item.ItemPrice</td>
+                        <td>@item.ItemType</td>
+                        <td>@item.ItemCount</td>
+                        <td>@item.ExpiresAt</td>
+                        <td>@item.CreatedDate</td>
+                        <td>
+                            <a class="view-button-1" asp-page="/Admin/Rewards/Details" asp-route-id="@item.ItemID">View</a>
+                        </td>
+                        <td>
+                            <a asp-page="/Admin/Rewards/Update" asp-route-id="@item.ItemID" class="view-button-1">Update</a>
+                        </td>
+                        <td>
+                            <form method="post" enctype="multipart/form-data">
+                                <input type="hidden" asp-for="ShopItemDelete.ItemID"
+                               value="@item.ItemID" />
+                                <input class="delete-button" type="submit" value="Delete">
+                            </form>                        
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+        @if (Model.GoPageBack > 0)
+        {
+            <a class="page-nav-link" asp-page="/Admin/Rewards/Index" asp-route-index="@Model.GoPageBack"> Prev </a>
+            <p style="margin-left: 1em; margin-right: 1em;">@(Model.GoPageBack + 1)</p>
+            <a class="page-nav-link" asp-page="/Admin/Rewards/Index" asp-route-index="@Model.GoPageFront"> Next </a>
+        }
+        else
+        {
+            <p style="margin-left: 1em; margin-right: 1em;">@(Model.GoPageBack + 1)</p>
+            <a class="page-nav-link" asp-page="/Admin/Rewards/Index" asp-route-index="@Model.GoPageFront"> Next </a>
+        }
+    </div>
+</div>
+<div>
+    <a class="view-button-1" href="/Admin/Rewards/Add">Add</a>
+</div>
+

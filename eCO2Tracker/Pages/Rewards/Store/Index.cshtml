@@ -1,0 +1,26 @@
+﻿@page
+@model eCO2Tracker.Pages.Rewards.Store.IndexModel
+@{
+    ViewData["title"] = "Shop";
+}
+<div>
+    <p class="rewards-page-title" style="color:#000000">Current points</p>
+    <div class="points-border">
+        <h1 class="display-5" style="color:#ffffff">@Model.User.PointsTotal pts</h1>
+    </div>
+
+    <div class="index-content">
+        <div class="rewards-nav">
+            <a class="rewards-navlink" asp-page="/Rewards/Index">About</a>
+            <a class="rewards-navlink" asp-page="/Rewards/Inventory">Inventory</a>
+            <a class="rewards-navlink-active" asp-page="/Rewards/Store/Index">Store</a>
+        </div>
+
+        <div class="div-center">
+            <a class="shop-button" href="/Rewards/Store/ShopPMD">PMD</a>
+            <a class="shop-button" href="#">Voucher</a>
+            <a class="shop-button" href="#">Other</a>
+        </div>
+    </div>
+
+</div>

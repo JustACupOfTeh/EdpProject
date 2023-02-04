@@ -14,6 +14,9 @@ builder.Services.AddDbContext<MyDbContext>();
 
 // Understanding Dependency Injection Lifetime
 // https://www.c-sharpcorner.com/article/understanding-addtransient-vs-addscoped-vs-addsingleton-in-asp-net-core/
+builder.Services.AddScoped<ShopItemService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<User_ShopItemService>();
 builder.Services.AddScoped<LifestyleService>();
 
 var app = builder.Build();
