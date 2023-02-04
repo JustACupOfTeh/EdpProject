@@ -21,7 +21,6 @@ namespace eCO2Tracker
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             //Define User_ShopItems table
             modelBuilder
                 .Entity<User_ShopItems>()
@@ -56,6 +55,5 @@ namespace eCO2Tracker
         public DbSet<Voucher> Vouchers { get; set; }
 
         public DbSet<User_ShopItems> UserItems { get; set; }
-
     }
 }
