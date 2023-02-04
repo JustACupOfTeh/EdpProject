@@ -5,6 +5,7 @@ namespace eCO2Tracker.Models
 {
     public class Lifestyles
     {
+        [Key]
         public string EntryID { get; set; } = generateUuid();
         [Required, MaxLength(100)]
         [Display(Name = "Title")]
