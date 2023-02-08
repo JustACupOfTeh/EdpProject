@@ -8,7 +8,7 @@ using eCO2TrackerWebAPI;
 
 #nullable disable
 
-namespace eCO2TrackerWebAPI.Migrations
+namespace eCO2Tracker.Migrations
 {
     [DbContext(typeof(MyDbContext))]
     partial class MyDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace eCO2TrackerWebAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("eCO2TrackerWebAPI.Models.User", b =>
+            modelBuilder.Entity("eCO2Tracker.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
