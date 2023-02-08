@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace eCO2TrackerWebApp.Models
+namespace eCO2Tracker.Models
 {
     public class UserView
     {
