@@ -18,12 +18,12 @@ namespace eCO2Tracker.Services
             _context.SaveChanges();
         }
 
-        public List<TrackingCLASS> GetAll()
+        /*public List<TrackingCLASS> GetAll()
         {
             return _context.TrackingDB.OrderBy(d => d.UserID).ToList();
-        }
+        }*/
 
-        
+
 
         public TrackingCLASS? GetTrackingById(string id)
         {
