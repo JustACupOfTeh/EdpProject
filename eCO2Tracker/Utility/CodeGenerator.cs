@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace eCO2TrackerWebAPI.Utility
+namespace eCO2Tracker.Utility
 {
     public class CodeGenerator
     {
