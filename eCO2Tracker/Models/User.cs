@@ -11,6 +11,7 @@ namespace eCO2Tracker.Models
         public int PointsCurrent { get; set; }
         public int PointsTotal { get; set; }
 
+        [Display(Name = "Description")]
         public int DistanceInstance { get; set; }
 
         public int TravelDate { get; set; }
