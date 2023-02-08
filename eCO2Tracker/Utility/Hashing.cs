@@ -1,4 +1,4 @@
-﻿namespace eCO2TrackerWebAPI.Utility
+﻿namespace eCO2Tracker.Utility
 {
     using BCrypt.Net;
 
