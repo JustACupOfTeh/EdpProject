@@ -31,5 +31,9 @@ namespace eCO2Tracker.Models
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
+
+        public List<User_ShopItems>? User_ShopItems { get; set; }
+
+
     }
 }
