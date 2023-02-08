@@ -1,0 +1,48 @@
+﻿@model IEnumerable<eCO2TrackerWebApp.Models.UserView>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout_User.cshtml";
+}
+
+<div class="row">
+    <div class="jumbotron bg-white mb-5 mt-2">
+        <h1 class="display-4">Earn Invite, gets 100 points</h1>
+        <p>1. Your friend gets 100 points when they sign up with your invite link</p>
+        <p>2. Then you get 100 points once they have added their first activity</p>
+      
+        <table class="mt-4 mb-4">
+            <tr><td>
+                Your referral code:
+            </td>
+            <td class="px-3">
+               <h3>@ViewBag.ReferralCode </h3>
+            </td>
+            </tr>
+        </table>
+        <button class="btn btn-outline-primary" data-toggle="modal" data-target="#sharingLink">Share your code</button>
+       
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="sharingLink" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Your Referral Code Link Sharing</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                <a href="#"> http://xxx.com?ref=@ViewBag.ReferralCode </a>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
