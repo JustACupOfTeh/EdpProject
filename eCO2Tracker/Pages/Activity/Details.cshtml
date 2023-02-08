@@ -1,0 +1,108 @@
+﻿@page
+@using Microsoft.AspNetCore.Antiforgery;
+@model eCO2Tracker.Pages.Activity.DetailsModel
+@inject IAntiforgery antiforgery
+@{
+	var token = antiforgery.GetAndStoreTokens(HttpContext).RequestToken;
+}
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.Activity.Name</h1>
+
+<div>
+	<hr />
+
+	@Html.HiddenFor(model => model.Activity.Category)
+	@Html.HiddenFor(model => model.Activity.Units)
+	@Html.HiddenFor(model => model.Activity.Id)
+	<dl class="row">
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Activity.Name)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Activity.Name)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Activity.Description)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Activity.Description)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Activity.Units)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Activity.Units)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Activity.Category)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Activity.Category)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Activity.IsPerformed)
+		</dt>
+	</dl>
+</div>
+<div>
+	<a id="btnPerform" class="btn btn-success">Perform</a> |
+	<a class="btn btn-danger" asp-page="./Delete" asp-route-id="@Model.Activity?.Id">Delete</a> |
+	<a class="btn btn-info" asp-page="./Index">Back to List</a>
+</div>
+
+<div id="performmodal" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Good Job !!</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p id="message"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts{
+	<script>
+		$("#btnPerform").on('click', function () {
+			var cat = $("#Activity_Category").val();
+			var units = $("#Activity_Units").val();
+			var unit = cat === "Food" ? 'kilograms' : cat === "Water" ? 'Letres' : 'kW';
+			$("#message").text(units + " " + unit + " of " + cat + " saved.");
+			$("#performmodal").modal('show');
+			UpdateDataBase($("#Activity_Id").val())
+		})
+
+		function UpdateDataBase(id) {
+			console.log(id);
+
+			$.ajax({
+				type: 'POST',
+				url: "/Activity/Details?handler=UpdatePerformedStatus",
+				data: JSON.stringify({ Id: id}),
+				contentType: "application/json",
+				dataType: "json",
+				success: function (result) {
+					// disable express option if delivery type is Electronic
+					if (result == "Status") {
+						console.log("Updated succesfully!");
+					} else {
+						console.log("Error occured!");
+					}
+				}
+			});
+		}
+	</script>
+}

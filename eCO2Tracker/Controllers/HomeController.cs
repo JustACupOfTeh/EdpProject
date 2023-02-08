@@ -1,4 +1,4 @@
-﻿using eCO2TrackerWebApp.Models;
+﻿using eCO2Tracker.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 
-namespace eCO2TrackerWebApp.Controllers
+namespace eCO2Tracker.Controllers
 	{
 	public class HomeController : Controller
 		{

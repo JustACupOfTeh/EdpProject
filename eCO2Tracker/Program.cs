@@ -1,5 +1,8 @@
 using eCO2Tracker;
 using eCO2Tracker.Services;
+using eCoTwoTracker.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +12,11 @@ builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDistributedMemoryCache();
-
+var connectionString = builder.Configuration.GetConnectionString("MyConnection");
+builder.Services.AddDbContext<MyDbContext>(options =>
+    options.UseSqlServer(connectionString));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddAntiforgery(o => o.HeaderName = "CSRF-TOKEN");
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromSeconds(10);
@@ -38,6 +45,7 @@ builder.Services.AddScoped<ShopItemService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<User_ShopItemService>();
 builder.Services.AddScoped<LifestyleService>();
+builder.Services.AddScoped<IActivityService, ActivityService>();
 
 var app = builder.Build();
 
