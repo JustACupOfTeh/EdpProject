@@ -1,13 +1,13 @@
-﻿using eCO2TrackerWebAPI.Models;
-using eCO2TrackerWebAPI.Services;
+﻿using eCO2Tracker.Models;
+using eCO2Tracker.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using eCO2TrackerWebAPI.Utility;
+using eCO2Tracker.Utility;
 using Newtonsoft.Json;
 using System.Text;
 using Azure;
 
-namespace eCO2TrackerWebAPI.Controllers
+namespace eCO2Tracker.Controllers
 {
     [Route("api/user")]
     [ApiController]
