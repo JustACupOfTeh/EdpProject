@@ -1,0 +1,119 @@
+﻿@page
+@model eCO2Tracker.Pages.Activity.IndexModel
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>All Activities</h1>
+<div class="row">
+	<div class="col-6">
+		<p>
+			<a class="btn btn-outline-info" asp-page="Create">+ Create New Activity</a>
+		</p>
+	</div>
+	<div class="col-6 float-right">
+		<p>
+			<a id="btnCalc" class="btn btn-outline-success">Calculate</a>
+		</p>
+	</div>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Activity[0].Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Activity[0].Description)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Activity[0].Units)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Activity[0].Category)
+			</th>
+			<th>
+				Saved
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.Activity)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Description)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Units)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Category)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IsPerformed)
+				</td>
+				<td>
+					<a class="btn btn-success" asp-page="./Details" asp-route-id="@item.Id">Save</a> |
+					<a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@item.Id">Edit</a>				
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<div id="calculateModal" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Total Amount Saved</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="inli"><h5>Water : </h5> <p id="water"> </p> <span>letres</span></div>
+				<h5>Food : </h5> <p id="food"> </p> <span>kgs</span>
+				<h5>Electricity : </h5> <p id="elect"> </p> <span>kJs</span>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+			</div>
+		</div>
+	</div>
+</div>
+@section Scripts{
+	<script>
+		$("#btnCalc").on('click', function () {
+			var data;
+			$.ajax({
+				type: 'GET',
+				url: '/Activity/Index?handler=GetActivitySummery',
+				cache: false,
+				async: false,
+				success: function (result) {
+					data = result;
+				}
+			});
+			console.log(data);
+
+			var water = data.split(",")[0];
+			var food = data.split(",")[1];
+			var elec = data.split(",")[2];
+			$("#water").text(water);
+			$("#food").text(food);
+			$("#elect").text(elec);
+			$("#calculateModal").modal('show');
+		})
+
+		function GetData(id) {
+
+		}
+	</script>
+}

@@ -21,7 +21,7 @@ namespace eCO2Tracker.Pages
 
         public void OnGet()
         {
-            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            //RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }
     }
 }

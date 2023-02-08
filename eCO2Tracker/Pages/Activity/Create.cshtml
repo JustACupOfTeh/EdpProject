@@ -1,0 +1,52 @@
+﻿@page
+@model eCO2Tracker.Pages.Activity.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Create activity</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Activity.Category" class="control-label"></label>
+                <select class="form-control" asp-for="Activity.Category" asp-items="Html.GetEnumSelectList<Models.Category>()">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="Activity.Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Activity.Name" class="control-label"></label>
+                <input asp-for="Activity.Name" class="form-control" />
+                <span asp-validation-for="Activity.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Activity.Description" class="control-label"></label>
+                <input asp-for="Activity.Description" class="form-control" />
+                <span asp-validation-for="Activity.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Activity.Units" class="control-label"></label>
+                <input asp-for="Activity.Units" class="form-control" />
+                <span asp-validation-for="Activity.Units" class="text-danger"></span>
+            </div>
+                
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary mt-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
