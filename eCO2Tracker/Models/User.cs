@@ -11,6 +11,10 @@ namespace eCO2Tracker.Models
         public int PointsCurrent { get; set; }
         public int PointsTotal { get; set; }
 
+        public int DistanceInstance { get; set; }
+
+        public int TravelDate { get; set; }
+
         //Relationships
         public List<User_ShopItems>? User_ShopItems { get; set; }
     }

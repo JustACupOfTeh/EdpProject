@@ -1,5 +1,6 @@
 ﻿using eCO2Tracker.Models;
 
+
 namespace eCO2Tracker.Services
 {
     public class LifestyleService
