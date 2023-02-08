@@ -30,6 +30,11 @@ namespace eCO2Tracker.Models
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
+        public int PointsCurrent { get; set; }
+        public int PointsTotal { get; set; }
+
+        //Relationships
+
 
         public List<User_ShopItems>? User_ShopItems { get; set; }
 
