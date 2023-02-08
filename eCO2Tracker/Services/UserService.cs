@@ -1,5 +1,5 @@
 ﻿using eCO2Tracker.Models;
-//using eCO2Tracker.Utility;
+using eCO2Tracker.Utility;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -24,7 +24,6 @@ namespace eCO2Tracker.Services
 
             if(user != null)
             {
-                //if (Hashing.ValidatePassword(loginUser.Password, user.Password) == true)
                 if (Hashing.ValidatePassword(loginUser.Password, user.Password) == true)
                 {
                     return user;
