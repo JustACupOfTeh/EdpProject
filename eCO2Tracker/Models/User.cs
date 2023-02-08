@@ -8,9 +8,6 @@ namespace eCO2Tracker.Models
     {
         public User() { }   
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
-
         [Required, Column("First_Name")]
         public string? FirstName { get; set; }
 
