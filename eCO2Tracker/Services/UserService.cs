@@ -97,5 +97,19 @@ namespace eCO2Tracker.Services
             _context.SaveChanges();
         }
 
+        public User? GetUserFirst()
+        {
+            if (_context.Users.First() != null)
+            {
+                User user = _context.Users.First();
+                return user;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
     }
 }
