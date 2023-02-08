@@ -1,157 +1,168 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Serialization;
-//using Microsoft.AspNetCore.Http;
-using eCO2TrackerWebApp.Models;
-using Newtonsoft;
+using eCO2Tracker.Models;
+using eCO2Tracker.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using eCO2Tracker.Utility;
 using Newtonsoft.Json;
 using System.Text;
-using System.Reflection;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Azure;
 
-namespace eCO2TrackerWebApp.Controllers
-	{
-	[Authorize]
-	public class UserController : Controller
-		{
-		private readonly ILogger<UserController> _logger;
+namespace eCO2Tracker.Controllers
+{
+    [Route("api/user")]
+    [ApiController]
+    public class UserController : ControllerBase
+    {
+        private readonly UserService _userService;
+        public UserController(UserService userService)
+        {
+            _userService = userService;
+        }
 
-		System.Uri baseAddress = new Uri("https://localhost:7269/api/user/");
-		HttpClient httpClient;
+        [HttpGet("list")]
+        public ActionResult<List<User>> GetAllUsers()
+        {
+            try
+            {
+                List<User> list = _userService.GetAll();
+                return Ok(list);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Technical Error");
+            }
+        }
 
-		public UserController(ILogger<UserController> logger)
-			{
-			_logger = logger;
-			httpClient = new HttpClient();
-			httpClient.BaseAddress = baseAddress;
-			}
+        [HttpPost("login")]
+        public ActionResult<User> Login(User user)
+        {
+            try
+            {
+                User u = new()
+                {
+                    Email = user.Email,
+                    Password = user.Password
+                };
 
-		public async Task<IActionResult> Index(string firstName, string lastName, string id)
-			{
-			ViewBag.FirstName = firstName;
-			ViewBag.LastName = lastName;
-			ViewBag.Id = id;
+                User? existingUser = _userService.Login(u);
+                if (existingUser != null)
+                {
+                    return Ok(existingUser);
+                }
+                else
+                {
+                    return BadRequest("Technical Error");
+                }
+            }
+            catch (Exception)
+            {
+                return BadRequest("Technical Error");
+            }
+        }
 
-			HttpContext.Session.SetString("FirstName", firstName is null ? "" : firstName);
-			HttpContext.Session.SetString("LastName", lastName is null ? "" : lastName);
-			HttpContext.Session.SetString("Id", id is null ? "" : id);
+        [HttpPost("register")]
+        public ActionResult CreateNewUser(User newUser)
+        {
+            try
+            {
+                string hashedPassword = Hashing.HashPassword(newUser.Password);
+                string referralCode = CodeGenerator.GetReferralCode();
 
-			List<UserView>? modelList = new List<UserView>();
+                User u = new()
+                {
+                    FirstName = newUser.FirstName,
+                    LastName = newUser.LastName,
+                    Email = newUser.Email,
+                    Password = hashedPassword,
+                    ReferralCode = referralCode,
+                    Role = "User",
+                    CreatedDate = DateTime.Now
+                };
+                _userService.CreateUser(u);
+                return Created("", newUser);
 
-			string uri = httpClient.BaseAddress + "list";
-			HttpResponseMessage response = await httpClient.GetAsync(uri);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Technical Error");
+            }
+        }
 
-			if (response.IsSuccessStatusCode)
-				{
-				string data = response.Content.ReadAsStringAsync().Result;
-				modelList = JsonConvert.DeserializeObject<List<UserView>>(data);
-				}
+        [HttpGet("view")]
+        public ActionResult ViewUser([FromQuery] string id)
+        {
+            try
+            {
+                User? user = _userService.GetUserById(id);
+                user.Password = "";
 
-			return View(modelList);
-			}
-
-		public IActionResult Create()
-			{
-
-			return View();
-			}
-
-
-
-		public IActionResult Update(string id)
-			{
-			ViewBag.FirstName = HttpContext.Session.GetString("FirstName");
-			ViewBag.LastName = HttpContext.Session.GetString("LastName");
-			ViewBag.Id = HttpContext.Session.GetString("Id");
-
-			UserView? model = new UserView();
-
-			string uri = httpClient.BaseAddress + "view?id=" + id;
-			HttpResponseMessage response = httpClient.GetAsync(uri).Result;
-			if (response.IsSuccessStatusCode)
-				{
-				string data = response.Content.ReadAsStringAsync().Result;
-				model = JsonConvert.DeserializeObject<UserView>(data);
-
-				}
-
-			return View("Update", model);
-			}
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Technical Error");
+            }
+        }
 
 
-		[HttpPost]
-		public IActionResult Update(UserView model)
-			{
-			ViewBag.FirstName = HttpContext.Session.GetString("FirstName");
-			ViewBag.LastName = HttpContext.Session.GetString("LastName");
-			ViewBag.Id = HttpContext.Session.GetString("Id");
+        [HttpPut("update")]
+        //public ActionResult UpdateUser([FromBody] User user)
+        public ActionResult UpdateUser(User user)
+        {
+            try
+            {
+                string hashedPassword = Hashing.HashPassword(user.Password);
 
-			//Initialize these fields (not updated) in model by filling sample input
-			model.Email = "abc@gmail.com";
-			model.CreatedDate = DateTime.Now;
-			model.Role = "User";
+                User u = new()
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Password = hashedPassword,
+                    UpdatedDate = DateTime.Now
+                };
+                _userService.UpdateUser(u);
+                return Ok();
 
-			string data = JsonConvert.SerializeObject(model);
-			StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+            }
+            catch (Exception)
+            {
+                return BadRequest("Technical Error");
+            }
+        }
 
-			string uri = httpClient.BaseAddress + "update";
-			HttpResponseMessage response = httpClient.PutAsync(uri, content).Result;
+        [HttpGet("getReferralCode")]
+        public ActionResult retrieveReferralCode([FromQuery] string id)
+        {
+            try
+            {
+                string referralCode = _userService.GetReferralCodeById(id);
+                return Ok(referralCode);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Technical Error");
+            }
+        }
 
-			if (response.IsSuccessStatusCode)
-				{
-				return RedirectToAction("Index");
-				}
+        [HttpDelete("delete")]
+        public ActionResult DeleteUser([FromQuery] string id)
+        {
+            try
+            {
+                User u = new()
+                {
+                    Id = Guid.Parse(id)
+                };
 
-			return View("Update");
-			}
+                _userService.DeleteUser(u);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest("Technical Error");
+            }
+        }
 
-		public IActionResult Delete(string id)
-			{
-			ViewBag.FirstName = HttpContext.Session.GetString("FirstName");
-			ViewBag.LastName = HttpContext.Session.GetString("LastName");
-			ViewBag.Id = HttpContext.Session.GetString("Id");
-
-			string uri = httpClient.BaseAddress + "delete?id=" + id;
-			HttpResponseMessage response = httpClient.DeleteAsync(uri).Result;
-			if (response.IsSuccessStatusCode)
-				{
-
-				return RedirectToAction("Index");
-				}
-
-			return View("");
-			}
-
-		public async Task<IActionResult> Logout()
-			{
-			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-			HttpContext.Session.Clear();
-			return this.RedirectToAction("Index", "Home");
-			}
-
-		public IActionResult ShowReferralCode(string id)
-			{
-			string uri = httpClient.BaseAddress + "getReferralCode?id=" + id;
-			HttpResponseMessage response = httpClient.GetAsync(uri).Result;
-			if (response.IsSuccessStatusCode)
-				{
-				string referralCode = "";
-				referralCode = response.Content.ReadAsStringAsync().Result;
-
-				ViewBag.ReferralCode = referralCode;
-				ViewBag.FirstName = HttpContext.Session.GetString("FirstName");
-				ViewBag.LastName = HttpContext.Session.GetString("LastName");
-				ViewBag.Id = id;
-
-				return View("ReferralCode");
-				//HttpContext.Session.SetString("ReferralCode", firstName is null ? "" : firstName);
-				//return RedirectToAction("ReferralCode" , "User", new { referralCode = referralCode });
-				}
-
-			return View("");
-
-			}
-		}
-	}
+    }
+}
