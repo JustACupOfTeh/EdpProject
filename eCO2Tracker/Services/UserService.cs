@@ -1,9 +1,9 @@
-﻿using eCO2TrackerWebAPI.Models;
-using eCO2TrackerWebAPI.Utility;
+﻿using eCO2Tracker.Models;
+using eCO2Tracker.Utility;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace eCO2TrackerWebAPI.Services
+namespace eCO2Tracker.Services
 {
     public class UserService
     {
