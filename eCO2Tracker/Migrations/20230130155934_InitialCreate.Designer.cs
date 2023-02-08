@@ -9,7 +9,7 @@ using eCO2TrackerWebAPI;
 
 #nullable disable
 
-namespace eCO2TrackerWebAPI.Migrations
+namespace eCO2Tracker.Migrations
 {
     [DbContext(typeof(MyDbContext))]
     [Migration("20230130155934_InitialCreate")]
@@ -25,7 +25,7 @@ namespace eCO2TrackerWebAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("eCO2TrackerWebAPI.Models.User", b =>
+            modelBuilder.Entity("eCO2Tracker.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
