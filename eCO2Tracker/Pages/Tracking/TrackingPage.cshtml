@@ -1,4 +1,30 @@
 ﻿@page
 @model eCO2Tracker.Pages.Tracking.TrackingPageModel
 @{
+    //c# code
+    ViewData["Title"] = "Tracking Page";
 }
+<h1>@ViewData["Title"]</h1>
+<div id="tracking form">
+
+    <form method="post">
+
+        <div class="col-md-4">
+            <input class="form-control" asp-for="oneUserTravelInstanceOBJECT.TravelDate" type="date" required />
+            <span asp-validation-for="oneUserTravelInstanceOBJECT.TravelDate" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <input class="form-control" asp-for="oneUserTravelInstanceOBJECT.DistanceInstance" type="number" required />
+            <span asp-validation-for="oneUserTravelInstanceOBJECT.DistanceInstance" class="text-danger"></span>
+        </div>
+
+
+        <div>
+            <input type="submit" value="Add" class="btn btn-primary" />
+        </div>
+
+    </form>
+
+
+</div>

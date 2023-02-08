@@ -54,6 +54,9 @@ namespace eCO2Tracker
 
         public DbSet<Voucher> Vouchers { get; set; }
 
+        //sets the table
+        public DbSet<TrackingCLASS> TrackingDB { get; set; }
+
         public DbSet<User_ShopItems> UserItems { get; set; }
         public DbSet<Lifestyles> Lifestyle { get; set; }
     }
