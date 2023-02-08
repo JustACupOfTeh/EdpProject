@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace eCO2TrackerWebAPI.Migrations
+namespace eCO2Tracker.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
