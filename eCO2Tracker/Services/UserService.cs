@@ -14,12 +14,12 @@ namespace eCO2Tracker.Services
         }
         public List<User> GetAll()
         {
-            return _context.User.OrderBy(d => d.Email).ToList();
+            return _context.Users.OrderBy(d => d.Email).ToList();
         }
        
         public User? Login(User loginUser)
         {
-            User? user = _context.User.FirstOrDefault(
+            User? user = _context.Users.FirstOrDefault(
             x => x.Email == loginUser.Email);
 
             if(user != null)
@@ -35,14 +35,14 @@ namespace eCO2Tracker.Services
 
         public User? GetUserById(string id)
         {
-            User? user = _context.User.FirstOrDefault(
+            User? user = _context.Users.FirstOrDefault(
             x => x.Id.ToString() == id);
             return user;
         }
 
         public string GetReferralCodeById(string id)
         {
-            User? user = _context.User.FirstOrDefault(
+            User? user = _context.Users.FirstOrDefault(
             x => x.Id.ToString() == id);
             return user.ReferralCode;
         }
@@ -51,7 +51,7 @@ namespace eCO2Tracker.Services
         {
             if (CheckIfUserExist(newUser.Email) != true)
             {
-                _context.User.Add(newUser);
+                _context.Users.Add(newUser);
                 _context.SaveChanges();
             }
         }
@@ -60,7 +60,7 @@ namespace eCO2Tracker.Services
         {
             bool status = true;
 
-            User? user = _context.User.FirstOrDefault(x => x.Email == email);
+            User? user = _context.Users.FirstOrDefault(x => x.Email == email);
 
             //user does not exist 
             if (user == null)
@@ -75,7 +75,7 @@ namespace eCO2Tracker.Services
         {
             using (_context)
             {
-                User? user = _context.User.FirstOrDefault(x => x.Id.Equals(userToBeUpdated.Id));
+                User? user = _context.Users.FirstOrDefault(x => x.Id.Equals(userToBeUpdated.Id));
 
                 if (user != null)
                 {
@@ -84,7 +84,7 @@ namespace eCO2Tracker.Services
                     user.Password = userToBeUpdated.Password;
                     user.UpdatedDate = userToBeUpdated.UpdatedDate;
 
-                    _context.User.Update(user);
+                    _context.Users.Update(user);
                     _context.SaveChanges();
                 }
             }
@@ -93,7 +93,7 @@ namespace eCO2Tracker.Services
 
         public void DeleteUser(User user)
         { 
-            _context.User.Remove(user);
+            _context.Users.Remove(user);
             _context.SaveChanges();
         }
 
