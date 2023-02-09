@@ -18,7 +18,7 @@ namespace eCO2Tracker.Pages.Admin.Rewards
         }
         public List<ShopItem> ShopItemList { get; set; } = new();
         [BindProperty]
-        public ShopItem ShopItemDelete { get; set; } = new();
+        public string ShopItemDelete { get; set; } = string.Empty;
         public int GoPageBack = 1;
         public int GoPageFront = 1;
         public IActionResult OnGet(int index = 1)

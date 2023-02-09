@@ -46,8 +46,9 @@ namespace eCO2Tracker.Services
             _context.ShopItems.Update(item);
             _context.SaveChanges();
         }
-        public void DeleteShopItem(ShopItem item)
+        public void DeleteShopItem(string id)
         {
+            ShopItem item = _context.ShopItems.FirstOrDefault(si => si.ItemID == id);
             _context.ShopItems.Remove(item);
             _context.SaveChanges();
         }
