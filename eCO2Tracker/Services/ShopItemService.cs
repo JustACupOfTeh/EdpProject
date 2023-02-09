@@ -25,6 +25,8 @@ namespace eCO2Tracker.Services
         }
         public void AddShopItem(ShopItem item)
         {
+            DateTime Now = DateTime.Now;
+            item.CreatedDate = Now;
             //Fill ItemDescriptionSummary
             if (item.ItemDescription.Length > 20)
             {

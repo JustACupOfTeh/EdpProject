@@ -24,7 +24,7 @@ namespace eCO2Tracker.Models
         public string ItemType { get; set; } 
 
         [DataType(DataType.DateTime)]
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime CreatedDate { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime? ExpiresAt { get; set; }
 
