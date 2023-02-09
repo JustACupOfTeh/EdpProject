@@ -70,10 +70,10 @@
 
             @*Expire At*@
             <div class="row mb-3">
-                <label class="col-sm-2 col-form-label" asp-for="ExpireDateTime">Expire At</label>
+                <label class="col-sm-2 col-form-label" asp-for="DateExpired">Expire At</label>
                 <div class="col-sm-10">
-                    <input id="dateInput" type="datetime-local" class="form-control" asp-for="ExpireDateTime" value="" />
-                    <span asp-validation-for="ExpireDateTime" class="text-danger"></span>
+                    <input id="dateInput" type="datetime-local" class="form-control" asp-for="DateExpired" value="" />
+                    <span asp-validation-for="DateExpired" class="text-danger"></span>
                 </div>
             </div>
         </div>
@@ -89,6 +89,9 @@
                  onerror="this.src='/uploads/shopping-bag.png'" />
         </div>
     </div>
+
+    @*CreatedDate*@
+    <input type="hidden" asp-for="ShopItem.CreatedDate"/>
 
     <div>
         <input type="submit" value="Update" class="btn btn-primary" />

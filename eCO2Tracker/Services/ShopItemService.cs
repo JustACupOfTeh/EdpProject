@@ -27,6 +27,7 @@ namespace eCO2Tracker.Services
         {
             DateTime Now = DateTime.Now;
             item.CreatedDate = Now;
+
             //Fill ItemDescriptionSummary
             if (item.ItemDescription.Length > 20)
             {
@@ -43,6 +44,16 @@ namespace eCO2Tracker.Services
         }
         public void UpdateShopItem(ShopItem item)
         {
+            //Fill ItemDescriptionSummary
+            if (item.ItemDescription.Length > 20)
+            {
+                var descSummary = item.ItemDescription.Substring(0, 20) + " ...";
+                item.ItemDescriptionSummary = descSummary;
+            }
+            else
+            {
+                item.ItemDescriptionSummary = item.ItemDescription;
+            }
             _context.ShopItems.Update(item);
             _context.SaveChanges();
         }

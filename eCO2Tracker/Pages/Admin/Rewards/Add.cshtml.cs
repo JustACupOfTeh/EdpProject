@@ -4,6 +4,7 @@ using eCO2Tracker.Models;
 using eCO2Tracker.Services;
 using System.Net;
 using System.Globalization;
+using System.ComponentModel.DataAnnotations;
 
 namespace eCO2Tracker.Pages.Admin.Rewards
 {
@@ -23,6 +24,7 @@ namespace eCO2Tracker.Pages.Admin.Rewards
         [BindProperty]
         public IFormFile? ItemImage { get; set; }
         [BindProperty]
+        [Required]
         public string ExpireDateTime { get; set; }
         public void OnGet()
         {
