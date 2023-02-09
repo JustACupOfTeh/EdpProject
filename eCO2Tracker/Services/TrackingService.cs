@@ -27,7 +27,7 @@ namespace eCO2Tracker.Services
 
         public TrackingCLASS? GetTrackingById(string id)
         {
-            TrackingCLASS? track = _context.TrackingDB.FirstOrDefault(x => x.UserID.Equals(id));
+            TrackingCLASS? track = _context.TrackingDB.FirstOrDefault(x => x.Id.Equals(id));
             return track;
         }
 

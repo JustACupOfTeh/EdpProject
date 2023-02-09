@@ -11,7 +11,7 @@ namespace eCO2Tracker.Models
     {
         
         [Key]
-        public string UserID { get; set; }
+        public Guid Id { get; set; }
 
         public int DistanceInstance { get; set; }
 
