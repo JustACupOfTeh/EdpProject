@@ -11,7 +11,7 @@
 
 
             @*Item ID*@
-            <input type="hidden" asp-for="ShopItem.ItemID" />
+            @Html.HiddenFor(model => model.ShopItem.ItemID)
 
             @* Item name*@
             <div class="row mb-3">
@@ -76,6 +76,18 @@
                     <span asp-validation-for="DateExpired" class="text-danger"></span>
                 </div>
             </div>
+
+
+            @*CreatedDate*@
+            <div class="row mb-3">                
+                <div class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ShopItem.CreatedDate)
+                </div>
+                <div class="col-sm-10">
+                    @Html.DisplayFor(model => model.ShopItem.CreatedDate)
+                </div> 
+            </div>
+
         </div>
 
         @*Image*@
@@ -86,17 +98,17 @@
                 <span asp-validation-for="ItemImage" class="text-danger"></span>
             </div>
             <img class="img-preview" id="imgPreview" src="@(string.IsNullOrEmpty(Model.ShopItem.ImageURL) ? "/uploads/shopping-bag.png" : Model.ShopItem.ImageURL)"
-                 onerror="this.src='/uploads/shopping-bag.png'" />
+                    onerror="this.src='/uploads/shopping-bag.png'" />
         </div>
+
     </div>
 
-    @*CreatedDate*@
-    <input type="hidden" asp-for="ShopItem.CreatedDate"/>
 
-    <div>
-        <input type="submit" value="Update" class="btn btn-primary" />
-        <a class="btn btn-secondary ms-2" asp-page="/Admin/Rewards/Index">Cancel</a>
-    </div>
+
+        <div>
+            <input type="submit" value="Update" class="btn btn-primary" />
+            <a class="btn btn-secondary ms-2" asp-page="/Admin/Rewards/Index">Cancel</a>
+        </div>
 </form>
 
 
