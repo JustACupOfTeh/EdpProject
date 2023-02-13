@@ -52,11 +52,15 @@
                 <div class="col-sm-10 d-flex align-items-center">
                     <div class="form-check form-check-inline">
                         @Html.RadioButtonFor(m => m.ShopItem.ItemType, "PMD", new {@class = "form-check-input"})
-                        <label class="form-check-label">PMD</label>
+                        <label class="form-check-label">Mobility Devices</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        @Html.RadioButtonFor(m => m.ShopItem.ItemType, "Other", new {@class = "form-check-input"})
-                        <label class="form-check-label">Other</label>
+                        @Html.RadioButtonFor(m => m.ShopItem.ItemType, "Voucher", new {@class = "form-check-input"})
+                        <label class="form-check-label">Voucher</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        @Html.RadioButtonFor(m => m.ShopItem.ItemType, "OrgFood", new {@class = "form-check-input"})
+                        <label class="form-check-label">OrganicFoods</label>
                     </div>
                     <span asp-validation-for="ShopItem.ItemType" class="text-danger"></span>
                 </div>

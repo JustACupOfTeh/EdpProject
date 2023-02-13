@@ -27,8 +27,7 @@ namespace eCO2Tracker
                 .HasKey(
                     us => new
                     {
-                        us.UserID,
-                        us.ItemID
+                        us.Id
                     });
 
             //Declare user to be part of User_ShopItem
@@ -36,14 +35,16 @@ namespace eCO2Tracker
                 .Entity<User_ShopItems>()
                 .HasOne(u => u.User)
                 .WithMany(us => us.User_ShopItems)
-                .HasForeignKey(u => u.UserID);
+                .HasForeignKey(u => u.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
 
             //Declare shopitem to be part of User_ShopItem
             modelBuilder
                 .Entity<User_ShopItems>()
                 .HasOne(s => s.ShopItem)
                 .WithMany(us => us.User_ShopItems)
-                .HasForeignKey(s => s.ItemID);
+                .HasForeignKey(s => s.ItemID)
+                .OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }

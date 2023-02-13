@@ -27,3 +27,7 @@ input, select {
 .btn {
     min-width: 80px;
 }
+
+p {
+    padding: 0;
+}

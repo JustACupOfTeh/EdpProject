@@ -19,9 +19,17 @@ namespace eCO2Tracker.Services
             ShopItem? shopItem = _context.ShopItems.FirstOrDefault(x => x.ItemID.Equals(id));
             return shopItem;
         }
-        public List<ShopItem> GetShopItemByType(string type)
+        public List<ShopItem> GetShopItemByTypeAsc(string type)
         {
-            return _context.ShopItems.Where(m => m.ItemType == type).ToList();
+            return _context.ShopItems.Where(m => m.ItemType == type)
+                .OrderBy(x => x.ItemPrice)
+                .ToList();
+        }
+        public List<ShopItem> GetShopItemByTypeDesc(string type)
+        {
+            return _context.ShopItems.Where(m => m.ItemType == type)
+                .OrderByDescending(x => x.ItemPrice)
+                .ToList();
         }
         public void AddShopItem(ShopItem item)
         {

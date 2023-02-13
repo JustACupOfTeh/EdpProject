@@ -1,11 +1,11 @@
 ﻿@page
-@model eCO2Tracker.Pages.Rewards.Store.ShopPMDModel
+@model eCO2Tracker.Pages.Rewards.Store.OrgFoodModel
 @{
-    ViewData["title"] = "Mobility Devices";
+    ViewData["title"] = "Organic Foods";
 }
 
 @{
-    if (Model.ShopPMDList.Count == 0)
+    @if (Model.OrgFoodList.Count == 0)
     {
         <div class="container">
             <div class="d-flex justify-content-center">
@@ -27,7 +27,7 @@
     {
         <div class="container">
             <div class="d-flex justify-content-center">
-                <img class="shop-logo" src="~/assets/PMD.png" />
+                <img class="shop-logo" src="~/assets/organic.png" />
             </div>
             <div class="col-1">
                 <a asp-page="/Rewards/Store/Index" class="shop-back-button">BACK</a>
@@ -38,7 +38,7 @@
             </div>
             <div class="grid-container">
                 @{
-                    @foreach (var item in Model.ShopPMDList)
+                    @foreach (var item in Model.OrgFoodList)
                     {
                         <div>
                             <div class="image-container">
