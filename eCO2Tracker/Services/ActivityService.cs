@@ -2,6 +2,7 @@
 using eCO2Tracker.Models;
 using eCO2Tracker.Services;
 using Microsoft.EntityFrameworkCore;
+using eCO2Tracker.Pages.Activity;
 
 namespace eCO2Tracker.Services
 {
@@ -55,8 +56,7 @@ namespace eCO2Tracker.Services
 
 			return new List<Activity>() { };
 		}
-
-		public async Task<Activity> GetActivityDetails(int? id)
+        public async Task<Activity> GetActivityDetails(int? id)
 		{
 			if (id == null || _context.Activities == null)
 			{
@@ -97,13 +97,37 @@ namespace eCO2Tracker.Services
 			_context.SaveChanges();
 		}
 
-		public async Task<string> GetActivitiesSummery()
+        public async Task UpdateCount(int? id)
+        {
+            var act = await _context.Activities.FindAsync(id);
+			if(act.count > 0) 
+			{ 
+				act.count -= 1;
+			}
+			
+			_context.SaveChanges();
+        }
+        public async Task<string> GetActivitiesSummery()
 		{
 			var activities = await _context.Activities.Where(a => a.IsPerformed).ToListAsync();
 			var water = activities.FindAll(s => s.Category == Category.Water).Sum(w => w.Units);
 			var food = activities.FindAll(s => s.Category == Category.Food).Sum(w => w.Units);
 			var elec = activities.FindAll(s => s.Category == Category.Electricity).Sum(w => w.Units);
 			return water + "," + food + "," + elec;
+		}
+		
+		public bool CountTest(int? id, bool tester)
+		{
+			var valfrmdb = _context.Activities.FirstOrDefault(m => m.Id==id);
+			if(valfrmdb.count <= 0)
+			{
+				tester = false;
+			}
+			else
+			{
+				tester = true;
+			}
+			return tester;
 		}
 	}
 }

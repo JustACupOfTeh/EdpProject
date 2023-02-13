@@ -12,18 +12,7 @@ namespace eCO2Tracker.Models
 		public string Description { get; set; }
 		[Required]
 		public decimal Units { get; set; }
-        public virtual int PhoneTypeId
-        {
-            get
-            {
-                return (int)this.Category;
-            }
-            set
-            {
-                Category = (Category)value;
-            }
-        }
-        [EnumDataType(typeof(Category))]
+		public int count { get; set; } = 3;
         public Category Category { get; set; }
 		public bool IsPerformed { get; set; }
 	}

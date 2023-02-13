@@ -17,24 +17,27 @@ namespace eCO2Tracker.Pages.Activity
 	{
 		private readonly IActivityService _activityService;
 
-		public DetailsModel(IActivityService activityService)
+
+		public bool ButtonEnabled { get; set; }
+        public DetailsModel(IActivityService activityService)
 		{
 			_activityService = activityService;
 		}
-
-		public eCO2Tracker.Models.Activity? Activity { get; set; }
+        public eCO2Tracker.Models.Activity? Activity { get; set; }
 
 		public async Task<IActionResult> OnGetAsync(int? id)
 		{
 			Activity = await _activityService.GetActivityDetails(id);
+			var bruh = _activityService.CountTest(id,ButtonEnabled);
+			ButtonEnabled = bruh;
 			return Page();
 		}
-
 		public async Task<IActionResult> OnPostUpdatePerformedStatusAsync([FromBody] Request request)
 		{
 			await _activityService.UpdatePerformedStatus(request.Id);
-
+			await _activityService.UpdateCount(request.Id);
 			return new JsonResult("Status" + true);
+			
 		}
 	}
 }

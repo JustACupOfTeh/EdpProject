@@ -11,5 +11,7 @@ namespace eCO2Tracker.Services
 		Task<string> GetActivitiesSummery();
 		Task<Activity> GetActivityDetails(int? id);
 		Task UpdatePerformedStatus(int id);
+		Task UpdateCount(int? id);
+		bool CountTest(int? id, bool tester);
 	}
 }
