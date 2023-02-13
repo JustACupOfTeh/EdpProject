@@ -219,11 +219,11 @@
 }
 
 .img-preview {
-    height: 220px;
-    width: 345px;
+    height: 350px;
+    width: 350px;
     padding: 1em;
     margin-top: 1em;
-    object-fit: cover;
+    object-fit: contain;
     border: solid 3px #0ba6a8;
 }
 
