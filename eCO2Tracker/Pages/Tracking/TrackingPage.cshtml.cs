@@ -28,7 +28,8 @@ namespace eCO2Tracker.Pages.Tracking
         public async Task<IActionResult> OnPost()
         {
             //sets the userid to default, need to take ryan's part for this
-            oneUserTravelInstanceOBJECT.UserID = "abc";
+            User user = _UserService.GetUserFirst();
+            oneUserTravelInstanceOBJECT.UserID = user.UserID;
 
             oneUserTravelInstanceOBJECT.PointsGained = oneUserTravelInstanceOBJECT.DistanceInstance * 10;
 
@@ -38,7 +39,7 @@ namespace eCO2Tracker.Pages.Tracking
             //adds the points to Yishen DB
             _UserService.AddUserPointsBy(oneUserTravelInstanceOBJECT.UserID, oneUserTravelInstanceOBJECT.PointsGained);
 
-            TempData["FlashMessage.Type"] = "danger";
+            TempData["FlashMessage.Type"] = "success";
             TempData["FlashMessage.Text"] = "you have gained " + oneUserTravelInstanceOBJECT.PointsGained + " points";
 
             return Redirect("/Tracking/TrackingHistory");

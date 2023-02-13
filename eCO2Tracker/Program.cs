@@ -29,7 +29,7 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<User_ShopItemService>();
 builder.Services.AddScoped<LifestyleService>();
 builder.Services.AddScoped<TrackingService>();
-builder.Services.AddScoped<ActivityService>();
+builder.Services.AddScoped<IActivityService, ActivityService>();
 
 
 

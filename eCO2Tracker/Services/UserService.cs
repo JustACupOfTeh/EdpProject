@@ -27,9 +27,13 @@ namespace eCO2Tracker.Services
             User? user = _context.Users.FirstOrDefault(x => x.UserID.Equals(userid));
             if(user != null) 
             {
+
                 user.PointsCurrent = user.PointsCurrent + pts;
                 user.PointsTotal = user.PointsTotal + pts;
+                _context.Users.Update(user);
+                _context.SaveChanges();
                 return true;
+
             }
             else
             {
@@ -44,6 +48,8 @@ namespace eCO2Tracker.Services
             if (user != null)
             {
                 user.PointsCurrent = user.PointsCurrent - pts;
+                _context.Users.Update(user);
+                _context.SaveChanges();
                 return true;
             }
             else
