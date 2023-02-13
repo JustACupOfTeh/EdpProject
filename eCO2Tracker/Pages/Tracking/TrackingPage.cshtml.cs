@@ -8,10 +8,12 @@ namespace eCO2Tracker.Pages.Tracking
     public class TrackingPageModel : PageModel
     {
         private readonly TrackingService _TrackingService;
+        private readonly UserService _UserService;
 
-        public TrackingPageModel(TrackingService UserTravelInstanceService)
+        public TrackingPageModel(TrackingService UserTravelInstanceService, UserService userService)
         {
             _TrackingService = UserTravelInstanceService;
+            _UserService = userService;
         }
 
         //makes the TrackingCLASS object
@@ -32,6 +34,9 @@ namespace eCO2Tracker.Pages.Tracking
 
             //adds to TrackingDB
             _TrackingService.AddTrackingInstance(oneUserTravelInstanceOBJECT);
+
+            //adds the points to Yishen DB
+            _UserService.AddUserPointsBy(oneUserTravelInstanceOBJECT.UserID, oneUserTravelInstanceOBJECT.PointsGained);
 
             TempData["FlashMessage.Type"] = "danger";
             TempData["FlashMessage.Text"] = "you have gained " + oneUserTravelInstanceOBJECT.PointsGained + " points";

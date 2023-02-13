@@ -29,6 +29,8 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<User_ShopItemService>();
 builder.Services.AddScoped<LifestyleService>();
 builder.Services.AddScoped<TrackingService>();
+builder.Services.AddScoped<ActivityService>();
+
 
 
 var app = builder.Build();

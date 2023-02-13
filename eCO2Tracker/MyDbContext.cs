@@ -57,5 +57,7 @@ namespace eCO2Tracker
         public DbSet<User_ShopItems> UserItems { get; set; }
         public DbSet<Lifestyles> Lifestyle { get; set; }
         public DbSet<TrackingCLASS> TrackingDB { get; set; }
+
+        public DbSet<Activity> Activities { get; set; }
     }
 }
