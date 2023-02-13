@@ -18,8 +18,38 @@ namespace eCO2Tracker.Services
             else
             {
                 return null;
+            } 
+        }
+
+        //Check for prescence of specified user. Adds to user points by total amount specified. Returns true or false
+        public Boolean AddUserPointsBy(string userid, int pts)
+        {
+            User? user = _context.Users.FirstOrDefault(x => x.UserID.Equals(userid));
+            if(user != null) 
+            {
+                user.PointsCurrent = user.PointsCurrent + pts;
+                user.PointsTotal = user.PointsTotal + pts;
+                return true;
             }
-            
+            else
+            {
+                return false;
+            }
+        }
+
+        //Check for prescence of specified user. Removes from user points by total amount specified. Returns true or false
+        public Boolean DeleteUserPointsBy(string userid, int pts) 
+        {
+            User? user = _context.Users.FirstOrDefault(x => x.UserID.Equals(userid));
+            if (user != null)
+            {
+                user.PointsCurrent = user.PointsCurrent - pts;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }

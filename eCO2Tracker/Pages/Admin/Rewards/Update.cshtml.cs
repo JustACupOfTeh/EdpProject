@@ -2,6 +2,9 @@ using eCO2Tracker.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using eCO2Tracker.Models;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.Data.SqlClient.Server;
+using System.Globalization;
 
 namespace eCO2Tracker.Pages.Admin.Rewards
 {
@@ -22,7 +25,8 @@ namespace eCO2Tracker.Pages.Admin.Rewards
         [BindProperty]
         public IFormFile? ItemImage { get; set; }
         [BindProperty]
-        public string ExpireDateTime { get; set; }
+        [Required]
+        public string DateExpired { get; set; }
         public IActionResult OnGet(string id)
         {
             ShopItemList = _shopItemService.GetAll();
@@ -45,6 +49,10 @@ namespace eCO2Tracker.Pages.Admin.Rewards
         {
             if (ModelState.IsValid)
             {
+                //Expire At value
+                var format = "yyyy-MM-ddTHH:mm";
+                ShopItem.ExpiresAt = DateTime.ParseExact(DateExpired, format, CultureInfo.InvariantCulture);
+
                 var uploadsFolder = "uploads";
                 if (ShopItem.ImageURL != null && ItemImage != null)
                 {

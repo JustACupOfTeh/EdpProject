@@ -1,4 +1,4 @@
-using eCO2Tracker.Services;
+    using eCO2Tracker.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using eCO2Tracker.Models;
@@ -18,18 +18,26 @@ namespace eCO2Tracker.Pages.Admin.Rewards
         }
         public List<ShopItem> ShopItemList { get; set; } = new();
         [BindProperty]
-        public ShopItem ShopItemDelete { get; set; } = new();
+        public string ShopItemDelete { get; set; } = string.Empty;
         public int GoPageBack = 1;
         public int GoPageFront = 1;
+        public int TotalPages = 1;
+        public int CurrentPage = 1;
+        public int PageLeak = 0;
         public IActionResult OnGet(int index = 1)
         {
+
+            List<ShopItem>? shopitemlist = _shopItemService.GetAll();
+
             // Configure page navigation
             int PageSize = 9;
             GoPageBack = index -1;
             GoPageFront = index + 1;
+            TotalPages = shopitemlist.Count / PageSize;
+            PageLeak = shopitemlist.Count % PageSize;
+            CurrentPage = index;
 
             //Get shop items
-            List<ShopItem>? shopitemlist = _shopItemService.GetAll();
             if (shopitemlist != null)
             {
                 ShopItemList = shopitemlist.Skip((index - 1) * PageSize).Take(PageSize).ToList(); ;
