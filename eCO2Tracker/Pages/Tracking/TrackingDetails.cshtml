@@ -1,0 +1,38 @@
+﻿@page
+@model eCO2Tracker.Pages.Tracking.TrackingDetailsModel
+@{
+    ViewData["Title"] = "Tracking Details";
+}
+<h1 class="display-4">@ViewData["Title"]</h1>
+
+<div>
+
+    <div>
+        <label class="col-sm-2  col-form-label">Tracking ID :</label>
+        <label>@Model.oneUserTravelInstanceOBJECT.TrackingDBID</label>
+    </div>
+
+
+    <div>
+        <label class="col-sm-2 col-form-label">Distance Travelled (m) :</label>
+        <label>@Model.oneUserTravelInstanceOBJECT.DistanceInstance</label>
+    </div>
+
+    <div>
+        <label class="col-sm-2 col-form-label">Travel Date :</label>
+        <label>@Model.oneUserTravelInstanceOBJECT.TravelDate</label>
+    </div>
+
+
+    <div>
+        <label class="col-sm-2 col-form-label">Points Gained:</label>
+        <label>@Model.oneUserTravelInstanceOBJECT.PointsGained</label>
+    </div>
+
+
+    <div class="mt-3">
+        <a class="btn btn-secondary" href="/Tracking/TrackingHistory">Back</a>
+    </div>
+
+
+</div>

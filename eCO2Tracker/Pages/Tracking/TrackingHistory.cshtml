@@ -1,0 +1,102 @@
+﻿@page
+@model eCO2Tracker.Pages.Tracking.TrackingHistoryModel
+@{
+}
+
+@*CommentText*@
+
+<a></a>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Tracking Number</th>
+            <th>@Html.DisplayNameFor(model => model.trackingList[0].TravelDate)</th>
+            <th>Distance Travelled (m)</th>
+            <th>Points Gained</th>
+
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+                @foreach (var item in Model.trackingList)
+            {
+                    <tr>
+                        <td>@item.TrackingDBID</td>
+                        <td>@item.TravelDate</td>
+                        <td>@item.DistanceInstance</td>
+                        <td>@item.PointsGained</td>
+                      
+
+
+                        <td>
+                            <a asp-page="/Tracking/TrackingDetails" asp-route-id="@item.TrackingDBID">View</a>
+                        </td>
+
+                        <td>
+                            <form method="post" enctype="multipart/form-data">
+                                <input type="hidden" asp-for="oneTrackingInstance.TrackingDBID" value="@item.TrackingDBID" />
+                                <input class="delete-button" type="submit" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+            }
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+
+            <td>
+                <form asp-page-handler="BackToDefault" method="post">
+                    <button class="btn btn-default" style="background-color: grey; color: white">Reset Sorting</button>
+                </form>
+            </td>
+
+            <td>
+                <form asp-page-handler="SortByDate" method="post">
+                    <button class="btn btn-default" style="background-color: grey; color: white">Sort By Date</button>
+                </form>
+            </td>
+
+            <td>
+                <form asp-page-handler="SortByPointsGained" method="post">
+                    <button class="btn btn-default" style="background-color: grey; color: white">Sort By Points Gained</button>
+                </form>
+            </td>
+
+            <td>
+                <form asp-page-handler="SortByDistanceTravelled" method="post">
+                    <button class="btn btn-default" style="background-color: grey; color: white">Sort By Distance Travelled</button>
+                </form>
+            </td>
+
+
+
+
+
+
+        </tr>
+
+
+    </tfoot>
+
+
+</table>
+
+
+@*displays the Go Forward/Go Back button*@
+<div class="d-flex justify-content-center">
+    @if (Model.GoPageBack > 0)
+    {
+        <a class="page-nav-link" asp-page="/Tracking/TrackingHistory" asp-route-index="@Model.GoPageBack"> Prev </a>
+        <p style="margin-left: 1em; margin-right: 1em;">@(Model.GoPageBack + 1)</p>
+        <a class="page-nav-link" asp-page="/Tracking/TrackingHistory" asp-route-index="@Model.GoPageFront"> Next </a>
+    }
+    else
+    {
+        <p style="margin-left: 1em; margin-right: 1em;">@(Model.GoPageBack + 1)</p>
+        <a class="page-nav-link" asp-page="/Tracking/TrackingHistory" asp-route-index="@Model.GoPageFront"> Next </a>
+    }
+</div>

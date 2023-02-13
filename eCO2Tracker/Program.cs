@@ -18,6 +18,7 @@ builder.Services.AddScoped<ShopItemService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<User_ShopItemService>();
 builder.Services.AddScoped<LifestyleService>();
+builder.Services.AddScoped<TrackingService>();
 
 var app = builder.Build();
 

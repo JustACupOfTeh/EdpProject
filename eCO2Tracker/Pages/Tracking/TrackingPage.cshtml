@@ -1,0 +1,55 @@
+﻿
+
+@page
+@model eCO2Tracker.Pages.Tracking.TrackingPageModel
+@{
+    //c# code
+    ViewData["Title"] = "Tracking Page";
+}
+<h1>@ViewData["Title"]</h1>
+<div id="tracking form">
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-8">
+
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" asp-for="oneUserTravelInstanceOBJECT.TravelDate">Date Of Travel</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" asp-for="oneUserTravelInstanceOBJECT.TravelDate" type="datetime-local" required />
+                        <span asp-validation-for="oneUserTravelInstanceOBJECT.TravelDate" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label" asp-for="oneUserTravelInstanceOBJECT.DistanceInstance">Distance Travelled (m)</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" asp-for="oneUserTravelInstanceOBJECT.DistanceInstance" type="number" required />
+                        <span asp-validation-for="oneUserTravelInstanceOBJECT.DistanceInstance" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+@*        <div class="col-md-4">
+            <input class="form-control" asp-for="oneUserTravelInstanceOBJECT.TravelDate" type="date" required />
+            <span asp-validation-for="oneUserTravelInstanceOBJECT.TravelDate" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <input class="form-control" asp-for="oneUserTravelInstanceOBJECT.DistanceInstance" type="number" required />
+            <span asp-validation-for="oneUserTravelInstanceOBJECT.DistanceInstance" class="text-danger"></span>
+        </div>*@
+
+
+        <div>
+            <input type="submit" value="Add" class="btn btn-primary" />
+        </div>
+
+    </form>
+
+
+</div>
