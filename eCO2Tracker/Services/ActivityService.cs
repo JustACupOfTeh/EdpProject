@@ -3,7 +3,7 @@ using eCO2Tracker.Models;
 using eCO2Tracker.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace eCoTwoTracker.Services
+namespace eCO2Tracker.Services
 {
 	public class ActivityService : IActivityService
 	{
