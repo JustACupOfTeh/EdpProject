@@ -1,9 +1,9 @@
-using App.Data;
+using eCO2Tracker.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySqlConnector;
 
-namespace App.Pages.User
+namespace eCO2Tracker.Pages.User
 {
     public class EditModel : PageModel
     {
