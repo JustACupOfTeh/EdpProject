@@ -1,5 +1,5 @@
-using App.Data;
-using App.Services;
+using eCO2Tracker.Models;
+using eCO2Tracker.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
