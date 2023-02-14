@@ -7,11 +7,6 @@ namespace eCO2Tracker.Models
         [Key]
         public string? UserID { get; set; }
         public string? UserName { get; set; }
-        [Required, Display(Name = "First Name")]
-        public string? FirstName { get; set; }
-        [Required, Display(Name = "Last Name")]
-        public string? LastName { get; set; }
-        [Required]
         public string? Email { get; set; }
         public string? Password { get; set; }
         public int? PointsCurrent { get; set; }

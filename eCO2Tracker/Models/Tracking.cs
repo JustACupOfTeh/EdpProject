@@ -37,5 +37,10 @@ namespace eCO2Tracker.Models
         [Column(TypeName = "date")]
         public DateTime TravelDate { get; set; } = new DateTime(DateTime.Now.Year - 23, 1, 1);
 
+        [Required]
+        [Display(Name = "EnergySaved")]
+        [Column(TypeName = "int")]
+        public float EnergySaved { get; set; }
+
     }
 }

@@ -36,9 +36,12 @@
 				@Html.DisplayNameFor(model => model.Activity[0].Category)
 			</th>
 			<th>
-				Saved
+				Performed?
 			</th>
 			<th></th>
+			<th>
+				Daily Attempts
+			</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -63,6 +66,9 @@
 				<td>
 					<a class="btn btn-success" asp-page="./Details" asp-route-id="@item.Id">Save</a> |
 					<a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@item.Id">Edit</a>				
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.count)/3
 				</td>
 			</tr>
 		}
