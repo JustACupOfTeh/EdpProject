@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySqlConnector;
 
-namespace App.Pages.Admin
+namespace eCO2Tracker.Pages.Admin
 {
     public class LoginModel : PageModel
     {
