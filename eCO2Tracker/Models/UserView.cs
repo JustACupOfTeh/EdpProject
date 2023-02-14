@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace App.Data
+namespace eCO2Tracker.Models
 {
     public class UserView
     {
