@@ -1,0 +1,57 @@
+﻿@page
+@model User.IndexModel 
+@{
+  
+    
+}
+<head>
+    <title>User List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <button class="btn btn-primary">
+            <a asp-page="/User/Create"> 
+                Create New User</a>
+
+        </button>
+        <h2>User List</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Created Date</th>
+                    <th>Updated Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.Users)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.FirstName</td>
+                        <td>@user.LastName</td>
+                        <td>@user.Email</td>
+                        <td>@user.Password</td>
+                        <td>@user.CreatedDate</td>
+                        <td>@user.UpdatedDate</td>
+                        <td>
+                            <form method="post">
+                                <div class="form-group">
+                                    <input type="hidden" name="id" value="@user.Id" />
+                                    <button type="submit" name="action" value="delete" class="btn btn-danger btn-sm">Delete</button>
+                                    <a href="/User/Edit?id=@user.Id" class="btn btn-primary btn-sm">Edit</a>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
