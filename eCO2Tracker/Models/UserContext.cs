@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
-namespace App.Data
+namespace eCO2Tracker.Models
 {
     public class UserContext : DbContext
     {
