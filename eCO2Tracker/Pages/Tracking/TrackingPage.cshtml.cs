@@ -31,7 +31,12 @@ namespace eCO2Tracker.Pages.Tracking
             User user = _UserService.GetUserFirst();
             oneUserTravelInstanceOBJECT.UserID = user.UserID;
 
+            //calculates points gained
             oneUserTravelInstanceOBJECT.PointsGained = oneUserTravelInstanceOBJECT.DistanceInstance * 10;
+
+            //calculates carbon emissions saved (in grams)
+            //every 10m saves 86g of carbon emissions!!
+            oneUserTravelInstanceOBJECT.EnergySaved = oneUserTravelInstanceOBJECT.DistanceInstance / 10 * 86;
 
             //adds to TrackingDB
             _TrackingService.AddTrackingInstance(oneUserTravelInstanceOBJECT);

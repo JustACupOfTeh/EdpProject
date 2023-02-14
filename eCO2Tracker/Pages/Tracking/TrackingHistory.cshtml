@@ -5,7 +5,29 @@
 
 @*CommentText*@
 
-<a></a>
+<style>
+
+    #sortingbuttons {
+        transition-duration: 0.4s;
+        background-color: grey; 
+        color: white
+    }
+
+    #sortingbuttons:hover {
+        background-color: green;
+    }
+
+    #viewdetails:visited {
+        color: blue;
+    }
+
+    #buttondiv {
+        margin: 25px 50px 75px 100px;
+    }
+
+</style>
+
+
 <table class="table mt-3">
     <thead>
         <tr>
@@ -14,76 +36,76 @@
             <th>Distance Travelled (m)</th>
             <th>Points Gained</th>
 
-            <th></th>
-            <th></th>
+            <th>View Details</th>
+            <th>Delete Tracking</th>
         </tr>
     </thead>
     <tbody>
         @{
                 @foreach (var item in Model.trackingList)
             {
-                    <tr>
-                        <td>@item.TrackingDBID</td>
-                        <td>@item.TravelDate</td>
-                        <td>@item.DistanceInstance</td>
-                        <td>@item.PointsGained</td>
-                      
+                   <tr>
+                       <td>@item.TrackingDBID</td>
+                       <td>@item.TravelDate</td>
+                       <td>@item.DistanceInstance</td>
+                       <td>@item.PointsGained</td>
+                     
 
 
-                        <td>
-                            <a asp-page="/Tracking/TrackingDetails" asp-route-id="@item.TrackingDBID">View</a>
-                        </td>
+                       <td>
+                           <a id="viewdetails" asp-page="/Tracking/TrackingDetails" asp-route-id="@item.TrackingDBID">View</a>
+                       </td>
 
-                        <td>
-                            <form method="post" enctype="multipart/form-data">
-                                <input type="hidden" asp-for="oneTrackingInstance.TrackingDBID" value="@item.TrackingDBID" />
-                                <input class="delete-button" type="submit" value="Delete">
-                            </form>
-                        </td>
-                    </tr>
+                       <td>
+                           <form method="post" enctype="multipart/form-data">
+                               <input type="hidden" asp-for="oneTrackingInstance.TrackingDBID" value="@item.TrackingDBID" />
+                               <input class="delete-button" type="submit" value="Delete">
+                           </form>
+                       </td>
+                   </tr>
             }
         }
     </tbody>
 
-    <tfoot>
-        <tr>
 
-            <td>
-                <form asp-page-handler="BackToDefault" method="post">
-                    <button class="btn btn-default" style="background-color: grey; color: white">Reset Sorting</button>
-                </form>
-            </td>
-
-            <td>
-                <form asp-page-handler="SortByDate" method="post">
-                    <button class="btn btn-default" style="background-color: grey; color: white">Sort By Date</button>
-                </form>
-            </td>
-
-            <td>
-                <form asp-page-handler="SortByPointsGained" method="post">
-                    <button class="btn btn-default" style="background-color: grey; color: white">Sort By Points Gained</button>
-                </form>
-            </td>
-
-            <td>
-                <form asp-page-handler="SortByDistanceTravelled" method="post">
-                    <button class="btn btn-default" style="background-color: grey; color: white">Sort By Distance Travelled</button>
-                </form>
-            </td>
-
-
-
-
-
-
-        </tr>
-
-
-    </tfoot>
 
 
 </table>
+
+<div class="d-flex justify-content-center">
+
+
+    <div id="buttondiv" >
+        <form asp-page-handler="BackToDefault" method="post">
+            <button id="sortingbuttons" class="btn btn-default">Reset Sorting</button>
+        </form>
+    </div>
+
+    <div id="buttondiv">
+        <form asp-page-handler="SortByDate" method="post">
+            <button id="sortingbuttons" class="btn btn-default">Sort By Date</button>
+        </form>
+    </div>
+
+    <div id="buttondiv">
+        <form asp-page-handler="SortByPointsGained" method="post">
+            <button id="sortingbuttons" class="btn btn-default">Sort By Points Gained</button>
+        </form>
+    </div>
+
+    <div id="buttondiv">
+        <form asp-page-handler="SortByDistanceTravelled" method="post">
+            <button id="sortingbuttons" class="btn btn-default" >Sort By Distance Travelled</button>
+        </form>
+    </div>
+
+
+
+
+
+
+</div>
+
 
 
 @*displays the Go Forward/Go Back button*@
