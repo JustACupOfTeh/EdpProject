@@ -21,7 +21,7 @@
                 foreach(var item in Model.UserShopItems)
                 {
                     <div class="row" style="border: 1px solid #0ba6a8;">
-                        <div class="col-1 d-flex justify-content-center align-items-center">
+                        <div class="col-2 d-flex justify-content-center align-items-center">
                             <img class="" src="@(string.IsNullOrEmpty(item.ShopItem.ImageURL) ? "/assets/shopping-bag.png" : item.ShopItem.ImageURL)" />
                         </div>
                         <div class="col-1 d-flex justify-content-center align-items-center">
