@@ -1,4 +1,6 @@
-﻿namespace eCO2Tracker.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace eCO2Tracker.Models
 {
     public class User_ShopItems
     {

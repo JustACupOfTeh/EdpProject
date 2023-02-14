@@ -16,5 +16,33 @@
             <a class="rewards-navlink-active" asp-page="/Rewards/Inventory">Inventory</a>
             <a class="rewards-navlink" asp-page="/Rewards/Store/Index">Store</a>
         </div>
+        <div class="grid-container-inv">
+            @{
+                foreach(var item in Model.UserShopItems)
+                {
+                    <div class="row" style="border: 1px solid #0ba6a8;">
+                        <div class="col-1 d-flex justify-content-center align-items-center">
+                            <img class="" src="@(string.IsNullOrEmpty(item.ShopItem.ImageURL) ? "/assets/shopping-bag.png" : item.ShopItem.ImageURL)" />
+                        </div>
+                        <div class="col-1 d-flex justify-content-center align-items-center">
+                            <h5 style="font-size: 1.2em;">@item.ShopItem.ItemName</h5>
+                        </div>
+                        <div class="col-3 d-flex justify-content-center align-items-center">
+                            <h5 style="font-size:1em;">@item.ShopItem.ItemDescription</h5>
+                        </div>
+                        <div class="col-3 d-flex flex-column justify-content-center align-items-center">
+                            <h5 style="font-size: 1em; font-weight: bold">Delivery Details</h5>
+                            <h5 style="font-size:1em;">Delivered by @item.DeliveryDate</h5>
+                        </div>
+                        <div class="col-3 d-flex flex-column justify-content-center align-items-center">
+                            <h5 style="font-size:2em; color: #0ba6a8">@item.ShopItem.ItemPrice pts</h5>
+                        </div>
+                    </div>
+                }
+            }
+            <div>
 
+            </div>
+        </div>
     </div>
+</div>

@@ -15,7 +15,7 @@ namespace eCO2Tracker.Pages.Rewards.Store
         {
             _shopItemService = shopItemService;
             _userService = userService;
-            _userShopItemService= userShopItemService;
+            _userShopItemService = userShopItemService;
             _environment = environment;
         }
         public List<ShopItem> ShopPMDList { get; set; } = new();
@@ -29,11 +29,11 @@ namespace eCO2Tracker.Pages.Rewards.Store
             ShopPMDList = _shopItemService.GetShopItemByTypeDesc("PMD");
         }
 
-        public async Task<IActionResult> OnPostAsync() 
+        public async Task<IActionResult> OnPostAsync()
         {
             User = _userService.GetUserFirst();
             ItemBought = _shopItemService.GetShopItemById(ItemID);
-            if (ItemBought.ItemCount > 0 && User.PointsCurrent >= ItemBought.ItemPrice) 
+            if (ItemBought.ItemCount > 0 && User.PointsCurrent >= ItemBought.ItemPrice)
             {
                 _shopItemService.BuyShopItem(ItemBought, User);
                 _userShopItemService.BuyShopItem(User, ItemBought);
@@ -44,7 +44,7 @@ namespace eCO2Tracker.Pages.Rewards.Store
             TempData["FlashMessage.Type"] = "danger";
             TempData["FlashMessage.Text"] = "Item not available.";
             return Redirect("/Rewards/Store/ShopPMD");
-            
+
         }
     }
 }

@@ -1,6 +1,5 @@
 using eCO2Tracker;
 using eCO2Tracker.Services;
-using eCO2Tracker.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

@@ -80,6 +80,13 @@
         border: 2px solid #000000;
     }
 
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: #999;
+}
+
 /* Shop listings */
 
 .shop-logo {
@@ -118,6 +125,20 @@
     grid-row-gap: 40px;
     justify-content: space-between;
 }
+
+.grid-container-inv {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-auto-rows: 120px;
+    grid-row-gap: 10px;
+    justify-content: center;
+}
+
+    .grid-container-inv img{
+        height: 80px;
+        width: 80px;
+        object-fit: contain;
+    }
 
 .image-container{
     text-align: center;
@@ -166,18 +187,24 @@
     border: none;
     font-weight: bold;
     cursor: pointer;
-}
-
-
-/*Admin related*/
-.add-button {
     text-decoration: none;
-    color: #ffffff;
-    background-color: #0ba6a8;
-    border-radius: 10px;
-    border: 0px;
-    padding: 8px 10px 8px 10px;
 }
+
+    .add-to-cart-button:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+
+
+    /*Admin related*/
+    .add-button {
+        text-decoration: none;
+        color: #ffffff;
+        background-color: #0ba6a8;
+        border-radius: 10px;
+        border: 0px;
+        padding: 8px 10px 8px 10px;
+    }
 
 .delete-button {
     text-decoration: none;

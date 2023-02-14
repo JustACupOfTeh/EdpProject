@@ -49,10 +49,20 @@
                                 <h5 class="product-name">@item.ItemName</h5>
                                 <h5 class="product-price">@item.ItemPrice pts</h5>
                                 <h5 class="product-quantity">@item.ItemCount LEFT</h5>
-                                <form enctype="multipart/form-data" method="post">
-                                    <input type="hidden" value="@item.ItemID" asp-for="ItemID" />
-                                    <button class="add-to-cart-button" type="submit">+ Buy</button>
-                                </form>
+                                @if (item.ItemCount > 0)
+                                {
+                                    <a type="button" class="add-to-cart-button text-center" asp-page="/Rewards/Store/Modal">
+                                        + Buy
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a type="button" class="add-to-cart-button text-center disabled" asp-page="/Rewards/Store/Modal">
+                                        + Buy
+                                    </a>
+                                }
+
+                                
                             </div>
                         </div>
                     }
@@ -61,5 +71,4 @@
         </div>
     }
 }
-
 

@@ -16,6 +16,7 @@ namespace eCO2Tracker.Models
         public string? Password { get; set; }
         public int? PointsCurrent { get; set; }
         public int? PointsTotal { get; set; }
+        public string? Address { get; set; }
         public string? Role { get; set; }
         [Display(Name = "Referral Code")]
         public string? ReferralCode { get; set; }
