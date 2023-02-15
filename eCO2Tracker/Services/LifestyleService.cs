@@ -28,10 +28,22 @@ namespace eCO2Tracker.Services
             _context.SaveChanges();
         }
 
-        public void UpdateEmployee(Lifestyles lifestyle)
+        public void UpdateLifestyle(Lifestyles lifestyle)
         {
             _context.Lifestyle.Update(lifestyle);
             _context.SaveChanges();
+        }
+
+        public void RemoveLifestyle(Lifestyles lifestyle)
+        {
+            _context.Lifestyle.Remove(lifestyle);
+            _context.SaveChanges();
+        }
+
+        public string generateUuid()
+        {
+            Guid guid = Guid.NewGuid();
+            return guid.ToString();
         }
     }
 }

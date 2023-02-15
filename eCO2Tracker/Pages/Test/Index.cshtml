@@ -1,0 +1,57 @@
+﻿@page
+@model eCO2Tracker.Pages.Test.IndexModel
+@{
+	ViewData["Title"] = "Test";
+}
+
+<h1 class="display-4">@ViewData["Title"]</h1>
+<form method="post">
+
+
+	@{
+						@foreach (Services.TestService.QuestionSectionList sections in (Services.TestService.QuestionSectionList[])Enum.GetValues(typeof(Services.TestService.QuestionSectionList)))
+		{
+							@if (Model.AllQuestions.Any(question => question.QuestionSection == sections.ToString()))
+			{
+								<h3>@sections</h3>
+			}
+							@foreach (Services.TestService.QuestionTypeList type in (Services.TestService.QuestionTypeList[])Enum.GetValues(typeof(Services.TestService.QuestionTypeList)))
+			{
+								@if (Model.AllQuestions.Any(question => question.QuestionSection == sections.ToString()) && Model.AllQuestions.Any(question => question.QuestionType == type.ToString()))
+				{
+									<h4>@type Questions</h4>
+				}
+				
+								@foreach (var question in Model.AllQuestions)
+				{
+									@if (question.QuestionSection == sections.ToString() && question.QuestionType == type.ToString() && question.QuestionStatus == true)
+					{
+										@if (question.QuestionType == "TrueOrFalse")
+						{
+											<label class="col-form-label">@question.QuestionTitle</label><br />
+												@Html.RadioButtonFor(m => m.answers.Answer, "True", new {@class = "form-check-input"})
+												<label class="form-check-label">True</label>
+												@Html.RadioButtonFor(m => m.answers.Answer, "False", new {@class = "form-check-input"})
+												<label class="form-check-label">False</label>
+						}
+										@if (question.QuestionType == "Rating")
+						{
+											<label class="col-form-label">@question.QuestionTitle</label><br />
+											@Html.RadioButtonFor(m => m.answers.Answer, "1", new {@class = "form-check-input"})
+											<label class="form-check-label">1</label>
+											@Html.RadioButtonFor(m => m.answers.Answer, "2", new {@class = "form-check-input"})
+											<label class="form-check-label">2</label>
+											@Html.RadioButtonFor(m => m.answers.Answer, "3", new {@class = "form-check-input"})
+											<label class="form-check-label">3</label>
+											@Html.RadioButtonFor(m => m.answers.Answer, "4", new {@class = "form-check-input"})
+											<label class="form-check-label">4</label>
+											@Html.RadioButtonFor(m => m.answers.Answer, "5", new {@class = "form-check-input"})
+											<label class="form-check-label">5</label>
+						}
+					}
+				}
+			}
+		}
+	}
+
+</form>

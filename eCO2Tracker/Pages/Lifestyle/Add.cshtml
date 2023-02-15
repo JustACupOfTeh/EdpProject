@@ -1,0 +1,95 @@
+﻿@page
+@model eCO2Tracker.Pages.Lifestyle.AddModel
+@{
+    ViewData["Title"] = "Add Lifestyle";
+}
+<h1 class="display-4">@ViewData["Title"]</h1>
+
+<form class="mt-3" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" asp-for="MyLifestyle.EntryTitle"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="MyLifestyle.EntryTitle" />
+                    <span asp-validation-for="MyLifestyle.EntryTitle" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" asp-for="MyLifestyle.EntryDesc"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="MyLifestyle.EntryDesc" />
+                    <span asp-validation-for="MyLifestyle.EntryDesc" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" asp-for="MyLifestyle.EntryShortDesc"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="MyLifestyle.EntryShortDesc" />
+                    <span asp-validation-for="MyLifestyle.EntryShortDesc" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" asp-for="MyLifestyle.EntryImpact"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="MyLifestyle.EntryImpact" />
+                    <span asp-validation-for="MyLifestyle.EntryImpact" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" asp-for="MyLifestyle.EntryReferences"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="MyLifestyle.EntryReferences" />
+                    <span asp-validation-for="MyLifestyle.EntryReferences" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" asp-for="MyLifestyle.EntryStatus"></label>
+                <div class="col-sm-10 d-flex align-items-center">
+                    <div class="form-check form-check-inline">
+                        @Html.CheckBoxFor(m => m.MyLifestyle.EntryStatus, new {@class = "form-check-input"})
+                        <label class="form-check-label">Set status to online after submitting</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mb-3">
+                <input type="file" accept="image/*" asp-for="Upload" class="form-control" onchange="showImgPreview(this)" />
+                <span asp-validation-for="Upload" class="text-danger"></span>
+            </div>
+            <img id="imgPreview" style="height:300px;width:400px;object-fit:cover"
+                 src="/uploads/lifestyle.png" />
+        </div>
+    </div>
+
+    <div>
+        <input type="submit" value="Add" class="btn btn-primary" />
+        <a class="btn btn-secondary ms-2" href="/Lifestyle">Cancel</a>
+    </div>
+</form>
+
+<script>
+    function showImgPreview(input) {
+        if (input.files[0]) {
+            var uploadimg = new FileReader();
+            uploadimg.onload = function (displayimg) {
+                $("#imgPreview").attr('src', displayimg.target.result);
+            }
+            uploadimg.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

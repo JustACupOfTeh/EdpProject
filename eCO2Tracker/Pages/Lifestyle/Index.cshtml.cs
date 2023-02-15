@@ -8,6 +8,7 @@ namespace eCO2Tracker.Pages.Lifestyle
     public class IndexModel : PageModel
     {
         private readonly LifestyleService _lifestyleService;
+        public Lifestyles AllLifestyles { get; set; } = new();
 
         public IndexModel(LifestyleService lifestyleService)
         { 

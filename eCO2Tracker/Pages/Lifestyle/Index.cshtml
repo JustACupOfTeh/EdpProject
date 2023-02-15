@@ -6,9 +6,32 @@
 <h1 class="display-4">@ViewData["Title"]</h1>
 
 <table class="table mt-3">
-	<thead>
-		<tr>
-			<th>@Html.DisplayNameFor(model => model.LifestyleList[1])</th>
-		</tr>
-	</thead>
+	<tbody>
+		@{
+			@foreach (var item in Model.LifestyleList)
+			{
+				@if (item.EntryStatus == true)
+				{
+					<tr>
+						<div class="container">
+							<div class="row">
+								<div class="col-4">
+									<img id="imgPreview" style="height:300px;width:400px;object-fit:cover"
+							 	src="@(string.IsNullOrEmpty(item.EntryImageURL) ? "/uploads/lifestyle.png" : item.EntryImageURL)"
+							 	onerror="this.src='/uploads/lifestyle.png'" />
+									<input class="form-control d-none" asp-for="AllLifestyles.EntryImageURL" />
+								</div>
+								<div class="col-8">
+									<h1 class="text-justify align-top font-weight-bold" style="font-size:40px;">@item.EntryTitle</h1>
+									<p>@item.EntryShortDesc</p>
+									<a asp-page="/Lifestyle/Update" asp-route-id="@item.EntryID">Update</a>
+								</div>
+							</div>
+						</div>
+					</tr>
+				}
+			}
+		}
+	</tbody>
+
 </table>
